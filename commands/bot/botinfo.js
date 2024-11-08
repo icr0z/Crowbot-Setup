@@ -19,7 +19,6 @@ module.exports = {
 
             embed.setTitle(`Information à Propos De : ${client.user.username}`)
             embed.setURL('https://discord.gg/9ZfB8m5E88')
-            embed.setDescription('**Une description complète et détaillée du Bot** <@1225087364821684379>')
             embed.setColor(color)
             .setThumbnail(message.author.avatarURL({ dynamic:true }));
             embed.setTimestamp()
