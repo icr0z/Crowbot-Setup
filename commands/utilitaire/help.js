@@ -157,7 +157,6 @@ module.exports = {
             if (2 <= perm) util.addField(`\`${prefix}channelinfo [salon]\``, "Permet de d'avoir des informations sur un salon")
             util.addField(`\`${prefix}help\``, "Permet de voir la liste des commandes du bot")
             if (1 <= perm) util.addField(`\`${prefix}help all\``, "Permet de voir les commandes du bot via les permissions")
-            util.addField(`\`${prefix}image <fonctions>\``, "Permet de chercher une image sur google via le bot")
             util.addField(`\`${prefix}invite [membre]\``, "Permet de voir le nombre d'invtations que possède un utilisateur")
             util.addField(`\`${prefix}pic [membre]\``, "Permet de voir la photo de profil d'un utilisateur")
             util.addField(`\`${prefix}pornigf [fonctions]\``, "Permet de voir des images nsfw")
