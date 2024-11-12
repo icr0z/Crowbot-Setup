@@ -233,8 +233,9 @@ module.exports = {
             if (4 <= perm) bot.addField(`\`${prefix}backup <serveur/emoji> <clear/create/list/load/remove>> <2/3/4: code>\``, "Permet de gérer les backup sur le bot")
             if (4 <= perm) bot.addField(`\`${prefix}blacklist <add/clear/list/remove> <add/remove: membre>\``, "Permet de gérer les utilisateurs blacklist")
             if (4 <= perm) bot.addField(`\`${prefix}blacklistrank <add/clear/list/remove> <add/remove: membre>\``, "Permet de gérer les utilisateurs blacklistrank")
-			if (4 <= perm) bot.addField(`\`${prefix}botconfig\``, "Permet de gérer le profil du bot")
-			if (4 <= perm) bot.addField(`\`${prefix}botinfo\``, "Permet d'avoir les informations du bot")
+	    if (4 <= perm) bot.addField(`\`${prefix}botconfig\``, "Permet de gérer le profil du bot")
+	    if (4 <= perm) bot.addField(`\`${prefix}botinfo\``, "Permet d'avoir les informations du bot")
+	    if (4 <= perm) bot.addField(`\`${prefix}custom <nom/list/delete> <delete: nom>\` (*Custom sur le Bot*)`, "Permet de gérer les commandes personaliser sur le bot")
             if (5 <= perm) bot.addField(`\`${prefix}owner <add/clear/list/remove> <add/remove: membre>\``, "Permet de gérer les utilisateurs owners")
             if (4 <= perm) bot.addField(`\`${prefix}server <invite/leave/list> <leave/invite: ID>\``, "Permet de gérer les serveurs où ce trouve le bot")
 
