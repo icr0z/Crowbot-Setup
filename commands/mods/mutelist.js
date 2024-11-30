@@ -6,9 +6,8 @@ const {
 	MessageMenuOption,
 	MessageMenu
 } = require('discord-buttons');
-const {
-	MessageEmbed
-} = require("discord.js")
+
+const { MessageEmbed } = require("discord.js")
 
 function sleep(ms) {
 	return new Promise((resolve) => {
@@ -51,7 +50,6 @@ module.exports = {
 				.setColor(color)
 				.setFooter(`Total: ${muteRole.members.size} • ${client.config.name}`)
 
-
 			message.channel.send(embed).then(async tdata => {
 				if (muteRole.members.size > 5) {
 					const B1 = new MessageButton()
@@ -86,9 +84,8 @@ module.exports = {
 								.setColor(color)
 								.setFooter(`Total: ${muteRole.members.size} • ${client.config.name}`)
 
-
 						})
-						// message.channel.send(embeds)
+
 					}, 60000 * 5)
 					client.on("clickButton", (button) => {
 						if (button.clicker.user.id !== message.author.id) return;
