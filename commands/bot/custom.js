@@ -1,6 +1,11 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-const { MessageActionRow, MessageButton, MessageMenuOption, MessageMenu } = require('discord-buttons');
+const { 
+    MessageActionRow, 
+    MessageButton, 
+    MessageMenuOption,
+    MessageMenu 
+} = require('discord-buttons');
 
 module.exports = {
     name: 'custom',
@@ -18,7 +23,7 @@ module.exports = {
                 let page = 1;
         
                 const embed = new Discord.MessageEmbed()
-                    .setTitle('Custom Commande')
+                    .setTitle('Custom Commandes')
                     .setDescription(money
                         
                         .map((m, i) => `${i + 1}) ${m.ID.split('_')[1]} (${m.ID.split("_")[0] === "customcmdembed" ? "Embed":"Message"})`)
@@ -48,7 +53,7 @@ module.exports = {
                         setTimeout(() => {
                             tdata.edit("", {
                                 components: [], embed: new Discord.MessageEmbed()
-                                    .setTitle('Custom Commande')
+                                    .setTitle('Custom Commandes')
                                     .setDescription(money
                                         
                                                                .map((m, i) => `${i + 1}) ${m.ID.split('_')[1]} (${m.data.embed ? "Embed":"Message"})`)
@@ -124,7 +129,7 @@ module.exports = {
                 if(!cmd) return message.reply(`Merci d'entrer une commande à supprimer !`)
                 let cmd1=  db.get(`customcmd_${cmd}`)
                 let cmd2 =  db.get(`customcmdembed_${cmd}`)
-                if(cmd1 ===null|| cmd2 ===null) return message.reply(`Je ne trouve pas de commande personaliser avec ce nom !`)
+                if(cmd1 ===null|| cmd2 ===null) return message.reply(`Je ne trouve pas de commande personnaliser avec ce nom !`)
                 db.delete(`customcmd_${cmd}`)
                 db.delete(`customcmdembed_${cmd}`)
                 message.react("✅")
@@ -134,7 +139,7 @@ module.exports = {
                 function updateembed(msg) {
                     if(db.get(`customstyle_${message.guild.id}_${message.id}`) === "message" || db.get(`customstyle_${message.guild.id}_${message.id}`) === null) {
                         const embed = new Discord.MessageEmbed()
-                        .setTitle(`Custom Commande`)
+                        .setTitle(`Custom Commandes`)
                         .setColor(color)
                         .addField("Nom", db.get(`customcmdname_${message.guild.id}`) === null ? cmd : `<@&${db.get(`customcmdname_${message.guild.id}`)}> (${db.get(`customcmdname_${message.guild.id}`)})`)
                         .addField("Message", db.get(`custommsg_${message.guild.id}`) === null ? db.get(`customembed_${message.guild.id}`) === null ? ":x:" :"Embed" : `${db.get(`custommsg_${message.guild.id}`)}`)
@@ -159,12 +164,12 @@ module.exports = {
                     .setStyle("gray")
                     .setID(message.id+"custom")
                     .setEmoji("❌")
-                    .setLabel("Re formuler votre choix")
+                    .setLabel("Reformuler votre choix")
                     let interactiveButtons = new MessageMenu()
                         .setID(message.id+'MenuSelection')
                         .setMaxValues(1)
                         .setMinValues(1)
-                        .setPlaceholder('Faix un choix');
+                        .setPlaceholder('Fais un choix');
                     menuoptions.forEach(option => {
                         let row = new MessageMenuOption()
                             .setLabel(option.label ? option.label : option.value)
@@ -189,7 +194,7 @@ module.exports = {
                 } else  if(db.get(`customstyle_${message.guild.id}_${message.id}`) === "embed" ) {
         
                     const embed = new Discord.MessageEmbed()
-                        .setTitle(`Custom Commande`)
+                        .setTitle(`Custom Commandes`)
                         .setColor(color)
                         .addField("Nom", db.get(`customcmdname_${message.guild.id}`) === null ? cmd : `<@&${db.get(`customcmdname_${message.guild.id}`)}> (${db.get(`customcmdname_${message.guild.id}`)})`)
                         .addField("Embed", db.get(`customembed_${message.guild.id}`) === null ? db.get(`custommsg_${message.guild.id}`) === null ? ":x:" :`Message: ${db.get(`custommsg_${message.guild.id}`)}` : `Oui`)
@@ -217,12 +222,12 @@ module.exports = {
                     .setStyle("gray")
                     .setID(message.id+"custom")
                     .setEmoji("❌")
-                    .setLabel("Re formuler votre choix")
+                    .setLabel("Reformuler votre choix")
                     let interactiveButtons = new MessageMenu()
                         .setID(message.id+'MenuSelection')
                         .setMaxValues(1)
                         .setMinValues(1)
-                        .setPlaceholder('Faix un choix');
+                        .setPlaceholder('Fais un choix');
                     menuoptions.forEach(option => {
                         let row = new MessageMenuOption()
                             .setLabel(option.label ? option.label : option.value)
@@ -249,13 +254,12 @@ module.exports = {
                 if(!cmd) return message.react("❌")
                 let cmd1=  db.get(`customcmd_${cmd}`)
                 let cmd2 =  db.get(`customcmdembed_${cmd}`)
-                if(cmd1 !==null|| cmd2 !==null) return message.reply(`Il existe déjà une commande personaliser avec ce nom !`)
+                if(cmd1 !==null|| cmd2 !==null) return message.reply(`Il existe déjà une commande personnaliser avec ce nom !`)
                 
             message.channel.send(`Salut`) .then(async m => {
                 updateembed(m)
                 setTimeout(() => {
                     m.edit("Trop long", { components: [], embed: []})
-                    // message.channel.send(embeds)
                 }, 60000 * 5)
                 client.on('clickMenu', async (menu) => {
                     if (message.author !== menu.clicker.user || menu.message.id !== m.id ) return ;
@@ -386,7 +390,7 @@ Quel est **le nouveau message** ?`).then(mp => {
             .setID(message.id+'MenuSelection')
             .setMaxValues(1)
             .setMinValues(1)
-            .setPlaceholder('Faix un choix');
+            .setPlaceholder('Fais un choix');
         menuoptions.forEach(option => {
             let row = new MessageMenuOption()
                 .setLabel(option.label ? option.label : option.value)
@@ -405,7 +409,7 @@ Quel est **le nouveau message** ?`).then(mp => {
         .setStyle("gray")
         .setID("customembedmsg3"+message.id)
         .setEmoji("❌")
-        .setLabel("Re formuler votre choix")
+        .setLabel("Reformuler votre choix")
 
          message.channel.send(`\`\`\`
 --- Informations sur l'author : ---
@@ -457,7 +461,7 @@ Serveur : {guild:name}
         async    function slmmenu(menu) {
                 switch (menu.values[0]) {
                     case "Modifier le titre":
-                        let question = await message.channel.send("Quel est **le nouveau titre de l'embed ?**")
+                        let question = await message.channel.send("Quel est **le nouveau titre de l'embed** ?")
                         
                         message.channel.awaitMessages(filter, {
                             max: 1,
@@ -472,7 +476,7 @@ Serveur : {guild:name}
                             msgg.edit(embedbase)
                             }).catch(async (err) => {
                                 
-                                message.channel.send("**Désolé mais je ne peux pas modifier le Titre !**").then((mm) => mm.delete({
+                                message.channel.send("Désolé, je ne peux pas modifier le **titre** !").then((mm) => mm.delete({
                                     timeout: 2500
                             }));
                         })
@@ -484,7 +488,7 @@ Serveur : {guild:name}
                         break
 
                     case "Modifier la description":
-                        let descriptionques = await message.channel.send("Quel est **la nouvelle description de l'embed ?**")
+                        let descriptionques = await message.channel.send("Quelle est **la nouvelle description de l'embed** ?")
                         
                         message.channel.awaitMessages(filter, {
                             max: 1,
@@ -499,7 +503,7 @@ Serveur : {guild:name}
                             msgg.edit(embedbase)
                             }).catch(async (err) => {
                                 
-                                message.channel.send("**Désolé mais je ne peux pas modifier la description !**").then((mm) => mm.delete({
+                                message.channel.send("Désolé, je ne peux pas modifier la **description** !").then((mm) => mm.delete({
                                     timeout: 2500
                             }));
                         })
@@ -513,7 +517,7 @@ Serveur : {guild:name}
                     case "Modifier l'auteur":
                         const embedquest = new Discord.MessageEmbed()                            
 
-                        let SELAMq = await message.channel.send("Quel est **le nouveau autheur de l'embed ?", embedquest.setDescription("Vous pouvez mentionner un **Utilisateur** pour mettre son pseudo et sont Avatar"))
+                        let SELAMq = await message.channel.send("Quel est **le nouveau autheur de l'embed ?", embedquest.setDescription("Vous pouvez mentionner un **Utilisateur** pour mettre son pseudo et son Avatar"))
                         
                         message.channel.awaitMessages(filter, {
                             max: 1,
@@ -540,7 +544,7 @@ Serveur : {guild:name}
                                     ];
                                     if (!liens.some(word => img.includes(word))){
                                         embedbase.setAuthor(auteur)
-                                        message.channel.send("Vous avez choisi de ne pas ajouter d'Avatar a votre Author ou le lien n'est pas Valide !").then((mm) => mm.delete({ timeout: 2500 })) }
+                                        message.channel.send("Vous avez choisi de ne pas ajouter d'Avatar à votre Author ou le **lien** n'est pas valide !").then((mm) => mm.delete({ timeout: 2500 })) }
     
                                         if (liens.some(word => img.includes(word))){
                                     embedbase.setAuthor(auteur, auteurImg.content)
@@ -555,7 +559,7 @@ Serveur : {guild:name}
                             msgg.edit(embedbase)
                             }).catch(async (err) => {
                                 
-                                message.channel.send("**Désolé mais je ne peux pas modifier l'Author !**").then((mm) => mm.delete({
+                                message.channel.send("Désolé, je ne peux pas modifier l'**Author** !").then((mm) => mm.delete({
                                     timeout: 2500
                             }));
                         })
@@ -567,7 +571,7 @@ Serveur : {guild:name}
                         break
                     case "Modifier le footer":
                         const embedtttt = new Discord.MessageEmbed()
-                        let TDCQUEST2 = await message.channel.send("Quel **Footer** voulez-vous attribuez à l'embed ?", embedtttt.setDescription("Vous pouvez mentionner un **Utilisateur** pour mettre son pseudo et sont Avatar"))
+                        let TDCQUEST2 = await message.channel.send("Quel **Footer** voulez-vous attribuer à l'embed ?", embedtttt.setDescription("Vous pouvez mentionner un **Utilisateur** pour mettre son pseudo et son Avatar"))
                         
                         message.channel.awaitMessages(filter, {
                             max: 1,
@@ -594,7 +598,7 @@ Serveur : {guild:name}
                                     ];
                                     if (!liens.some(word => img.includes(word))){
                                         embedbase.setFooter(footer)
-                                        message.channel.send("Vous avez choisi de ne pas ajouter d'Avatar au Footer ou le lien n'est pas Valide !").then((mm) => mm.delete({ timeout: 2500 })) }
+                                        message.channel.send("Vous avez choisi de ne pas ajouter d'Avatar au Footer ou le **lien** n'est pas valide !").then((mm) => mm.delete({ timeout: 2500 })) }
     
                                         if (liens.some(word => img.includes(word))){
                                     embedbase.setFooter(footer, footerImg.content)
@@ -609,7 +613,7 @@ Serveur : {guild:name}
                             msgg.edit(embedbase)
                             }).catch(async (err) => {
                                 
-                                message.channel.send("**Désolé mais je ne peux pas modifier le Footer !**").then((mm) => mm.delete({
+                                message.channel.send("Désolé, je ne peux pas modifier le **Footer** !").then((mm) => mm.delete({
                                     timeout: 2500
                             }));
                         })
@@ -621,7 +625,7 @@ Serveur : {guild:name}
                         msgg.edit(embedbase)
                         break
                         case "Modifier le thumbnail":
-                            let PASDETDCMEC = await message.channel.send("Quel **Thumbnail** voulez-vous attribuez à l'embed ?")
+                            let PASDETDCMEC = await message.channel.send("Quel **Thumbnail** voulez-vous attribuer à l'embed ?")
                             
                             message.channel.awaitMessages(filter, {
                                 max: 1,
@@ -640,7 +644,7 @@ Serveur : {guild:name}
                                 if (!liens.some(word => thumbnail.includes(word))){
                                     collected.first().delete()
                                     PASDETDCMEC.delete()
-                                    return message.channel.send("L'opération a été Annulée, vous devez spécifier un Lien !").then((mm) => mm.delete({ timeout: 2500 })) }
+                                    return message.channel.send("L'opération a été annulée, vous devez spécifier un **lien** !").then((mm) => mm.delete({ timeout: 2500 })) }
                                
         
                                 collected.first().delete()
@@ -649,7 +653,7 @@ Serveur : {guild:name}
                                 msgg.edit(embedbase)
                                 }).catch(async (err) => {
                                     
-                                    message.channel.send("**Désolé mais je ne peux pas modifier le Thumbnail !**").then((mm) => mm.delete({
+                                    message.channel.send("Désolé, je ne peux pas modifier le **Thumbnail** !").then((mm) => mm.delete({
                                         timeout: 2500
                                 }));
                             })
@@ -661,7 +665,7 @@ Serveur : {guild:name}
                             msgg.edit(embedbase)
                             break   
                          case "Modifier l'image":
-                            let heh1 = await message.channel.send("Quel **Image** voulez-vous attribuez à l'embed ?")
+                            let heh1 = await message.channel.send("Quelle **Image** voulez-vous attribuer à l'embed ?")
                 
                 message.channel.awaitMessages(filter, {
                     max: 1,
@@ -680,7 +684,7 @@ Serveur : {guild:name}
                         if (!liens.some(word => image.includes(word))){
                             collected.first().delete()
                             heh1.delete()
-                            return message.channel.send("L'opération a été Annulée, vous devez spécifier un Lien !").then((mm) => mm.delete({ timeout: 2500 })) }
+                            return message.channel.send("L'opération a été annulée, vous devez spécifier un **lien** !").then((mm) => mm.delete({ timeout: 2500 })) }
                        
             
                     collected.first().delete()
@@ -689,7 +693,7 @@ Serveur : {guild:name}
                     msgg.edit(embedbase)
                     }).catch(async (err) => {
                         
-                        message.channel.send("**Désolé mais je ne peux pas modifier l'Image !**").then((mm) => mm.delete({
+                        message.channel.send("Désolé, je ne peux pas modifier l'**Image** !").then((mm) => mm.delete({
                             timeout: 2500
                     }));
                 })
@@ -701,7 +705,7 @@ Serveur : {guild:name}
                             break 
                             
                             case "Modifier l'url du titre":
-                                let WASSIMLEMAITRE = await message.channel.send("Quel **URL** voulez-vous attribuez à l'embed ?")
+                                let WASSIMLEMAITRE = await message.channel.send("Quel **URL** voulez-vous attribuer à l'embed ?")
                                 
                                 message.channel.awaitMessages(filter, {
                                     max: 1,
@@ -720,7 +724,7 @@ Serveur : {guild:name}
                                         if (!liens.some(word => url.includes(word))){
                                             collected.first().delete()
                                             WASSIMLEMAITRE.delete()
-                                            return message.channel.send("L'opération a été Annulée, vous devez spécifier un Lien !").then((mm) => mm.delete({ timeout: 2500 })) }
+                                            return message.channel.send("L'opération a été annulée, vous devez spécifier un **lien** !").then((mm) => mm.delete({ timeout: 2500 })) }
                                        
                                             
                                     collected.first().delete()
@@ -729,7 +733,7 @@ Serveur : {guild:name}
                                     msgg.edit(embedbase)
                                     }).catch(async (err) => {
                                         
-                                        message.channel.send("**Désolé mais je ne peux pas modifier l'Url !**").then((mm) => mm.delete({
+                                        message.channel.send("Désolé, je ne peux pas modifier l'**Url** !").then((mm) => mm.delete({
                                             timeout: 2500
                                     }));
                                 })
@@ -745,7 +749,7 @@ Serveur : {guild:name}
                                     break 
                                     
                                     case "Modifier la couleur":
-                                        let HEHEHHE = await message.channel.send("Quel **Couleur** voulez-vous attribuez à l'embed ?")
+                                        let HEHEHHE = await message.channel.send("Quelle **Couleur** voulez-vous attribuer à l'embed ?")
                                         
                                         message.channel.awaitMessages(filter, {
                                             max: 1,
@@ -761,7 +765,7 @@ Serveur : {guild:name}
                                             msgg.edit(embedbase)
                                             }).catch(async (err) => {
                                                 
-                                                message.channel.send("**Désolé mais je ne peux pas modifier la Couleur !**").then((mm) => mm.delete({
+                                                message.channel.send("Désolé, je ne peux pas modifier la **Couleur** !").then((mm) => mm.delete({
                                                     timeout: 2500
                                             }));
                                         })
@@ -775,7 +779,7 @@ Serveur : {guild:name}
         
 
                     case "Copier un embed":
-                        const channID = await message.channel.send("Quel est **le salon ou ce trouve le message à copier ?** (*ID*)");
+                        const channID = await message.channel.send("Quel est **le salon où se trouve le message à copier ?** (*ID*)");
                         const channel_id = (await message.channel.awaitMessages(filterMessage, {max: 1, time: 60000})).first();
                         channID.delete();
                         channel_id.delete();
