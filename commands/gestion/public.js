@@ -7,7 +7,6 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
-
 module.exports = {
 	name: 'public',
 	aliases: [],
@@ -37,7 +36,7 @@ module.exports = {
 
 			} else if (args[0] === "clear") {
 				let money = db.all().filter(data => data.ID.startsWith(`channelpublic_${message.guild.id}`))
-				message.channel.send(`${money.length === undefined||null ? 0:money.length} ${money.length > 1 ? "channels ont été supprimées ":"channel ont été supprimée"} des public channel`)
+				message.channel.send(`**${money.length === undefined||null ? 0:money.length}** ${money.length > 1 ? "channels ont été supprimés ":"channel a été supprimé"} des publics channels`)
 
 				let delpublic = 0;
 				for (let i = 0; i < money.length; i++) {
@@ -90,7 +89,7 @@ module.exports = {
 							tdata.edit("", {
 								components: [],
 								embed: new Discord.MessageEmbed()
-									.setTitle(`Liste des salon public`)
+									.setTitle(`Liste des salons publics`)
 									.setDescription(money
 										.filter(x => message.guild.channels.cache.get(x.ID.split('_')[2]))
 										.map((m, i) => `${i + 1}) <#${message.guild.channels.cache.get(m.ID.split('_')[2]).id}> (${m.ID.split('_')[2]})`)
@@ -104,7 +103,6 @@ module.exports = {
 
 
 							})
-							// message.channel.send(embeds)
 						}, 60000 * 5)
 						client.on("clickButton", (button) => {
 							if (button.clicker.user.id !== message.author.id) return;
