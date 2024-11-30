@@ -1,12 +1,18 @@
-const Discord= require('discord.js')
+const Discord = require('discord.js')
 const db = require('quick.db')
+const {
+	MessageActionRow,
+	MessageButton,
+	MessageMenuOption,
+	MessageMenu
+} = require('discord-buttons');
+
 const math = require('mathjs') 
 
-const { MessageButton, MessageActionRow } = require('discord-buttons') 
 module.exports = {
-name: 'calc',
-aliases: [],
-run: async (client, message, args, prefix, color) => {
+    name: 'calc',
+    aliases: [],
+    run: async (client, message, args, prefix, color) => {
 
     let perm = ""
         message.member.roles.cache.forEach(role => {
@@ -31,7 +37,6 @@ run: async (client, message, args, prefix, color) => {
         const split = err.message.split(' ')
         const length = split.length
         const errMsg = err.message
-
 
         message.channel.send(`Format invalide`)    }  
 } else {
