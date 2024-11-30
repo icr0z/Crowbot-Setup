@@ -7,7 +7,6 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
-
 module.exports = {
 	name: 'perm',
 	aliases: [],
@@ -18,25 +17,25 @@ module.exports = {
 				if (args[1].toLowerCase() === "mods") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (db.get(`modsp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions mods !`)
+					if (db.get(`modsp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions Mods !`)
 					db.set(`modsp_${message.guild.id}_${role.id}`, true)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "admin") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (db.get(`admin_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions admin !`)
+					if (db.get(`admin_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions Admin !`)
 					db.set(`admin_${message.guild.id}_${role.id}`, true)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "owner") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (db.get(`ownerp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions owner !`)
+					if (db.get(`ownerp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions Owner !`)
 					db.set(`ownerp_${message.guild.id}_${role.id}`, true)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "giveaway") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (db.get(`gvwp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions giveaway !`)
+					if (db.get(`gvwp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle a déjà la permissions Giveaway !`)
 					db.set(`gvwp_${message.guild.id}_${role.id}`, true)
 					message.react("✅")
 				}
@@ -47,25 +46,25 @@ module.exports = {
 				if (args[1].toLowerCase() === "mods") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (!db.get(`modsp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions mods !`)
+					if (!db.get(`modsp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions Mods !`)
 					db.delete(`modsp_${message.guild.id}_${role.id}`)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "admin") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (!db.get(`admin_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions admin !`)
+					if (!db.get(`admin_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions Admin !`)
 					db.delete(`admin_${message.guild.id}_${role.id}`)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "owner") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (!db.get(`ownerp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions owner !`)
+					if (!db.get(`ownerp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions Owner !`)
 					db.delete(`ownerp_${message.guild.id}_${role.id}`)
 					message.react("✅")
 				} else if (args[1].toLowerCase() === "giveaway") {
 					let role = message.mentions.roles.first() || message.guild.roles.cache.get(args[2])
 					if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[2]}\``)
-					if (!db.get(`gvwp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions giveaway !`)
+					if (!db.get(`gvwp_${message.guild.id}_${role.id}`)) return message.channel.send(`Ce rôle n'a pas la permissions Giveaway !`)
 					db.delete(`gvwp_${message.guild.id}_${role.id}`)
 					message.react("✅")
 				}
@@ -137,7 +136,7 @@ module.exports = {
 				}
 				const embed = new Discord.MessageEmbed()
 					.setColor(color)
-					.setTitle("Permission Du Serveur")
+					.setTitle("Permission du Serveur")
 					.setTimestamp()
 					.setFooter(`${client.config.name}`)
 					.addField("Permissions Giveaway", gvw === "" ? ":x:" : gvw)
