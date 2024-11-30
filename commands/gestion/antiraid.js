@@ -89,7 +89,7 @@ module.exports = {
 				db.set(`crealimittemps_${message.guild.id}`, ms("1d"))
 
 
-				return msggg.edit("Tout modules d'antiraid ont été activées")
+				return msggg.edit("Tous les modules d'antiraid ont été activés")
 			})
 		}
 
@@ -110,7 +110,7 @@ module.exports = {
 				db.set(`antitoken_${message.guild.id}`, null)
 				db.set(`crealimit_${message.guild.id}`, null)
 				db.set(`link_${message.guild.id}`, null)
-				return msggg.edit("Tout modules d'antiraid ont été désactivées")
+				return msggg.edit("Tous les modules d'antiraid ont été désactivés")
 			})
 		}
 
@@ -168,7 +168,7 @@ module.exports = {
 				db.set(`crealimit_${message.guild.id}`, true)
 				db.set(`crealimittemps_${message.guild.id}`, ms("1d"))
 
-				return msggg.edit("Tout modules d'antiraid ont été activées en max")
+				return msggg.edit("Tous les modules d'antiraid ont été activés au max")
 			})
 		}
 		if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true) {
@@ -249,7 +249,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -292,7 +292,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui ajouterons des permissions à un membre ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui ajouteront des permissions à un membre ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -320,7 +320,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -329,7 +329,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un ajoutera des permissions à un membre ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un ajoutera des permissions à un membre ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -340,7 +340,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`rolesaddsanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **ajoutera des permissions à un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **ajoutera des permissions à un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -349,7 +349,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -357,7 +357,7 @@ module.exports = {
 									if (button.id === message.id + "addrolewl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui ajouterons des permissions à un membre ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui ajouteront des permissions à un membre ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -369,7 +369,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`rolesaddwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -377,7 +377,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`rolesaddwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -385,7 +385,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -401,7 +401,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -444,7 +444,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui supprimerons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui supprimeront des rôles ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -472,7 +472,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -481,7 +481,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un supprimera un rôle ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un supprimera un rôle ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -492,7 +492,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`rolesdelsanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **supprimera un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **supprimera un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -501,7 +501,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -509,7 +509,7 @@ module.exports = {
 									if (button.id === message.id + "delrolewl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui supprimerons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui supprimeront des rôles ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -521,7 +521,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`rolesdelwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -529,7 +529,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`rolesdelwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -537,7 +537,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -553,7 +553,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -596,7 +596,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui modifirons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui modifiront des rôles ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -624,7 +624,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -633,7 +633,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un modifira un rôle ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un modifira un rôle ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -644,7 +644,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`rolesmodsanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **modifira un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **modifira un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -653,7 +653,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -661,7 +661,7 @@ module.exports = {
 									if (button.id === message.id + "wlrolemod") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui modifirons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui modifiront des rôles ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -673,7 +673,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`rolesmodwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -681,7 +681,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`rolesmodwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -689,7 +689,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -705,7 +705,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -748,7 +748,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui créerons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui créeront des rôles ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -776,7 +776,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -785,7 +785,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un créera un rôle ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un créera un rôle ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -796,7 +796,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`rolescreatesanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **créera un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **créera un rôle** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -805,7 +805,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -813,7 +813,7 @@ module.exports = {
 									if (button.id === message.id + "whitelistrole") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui créerons des rôles ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui créeront des rôles ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -825,7 +825,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`rolescreatewl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -833,7 +833,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`rolescreatewl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -841,7 +841,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -857,7 +857,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -900,7 +900,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui créerons des webhook ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui créeront des webhook ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -928,7 +928,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -937,7 +937,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un créera un webhook ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un créera un webhook ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -948,7 +948,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`webhooksanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **créera un webhook** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **créera un webhook** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -957,7 +957,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -965,7 +965,7 @@ module.exports = {
 									if (button.id === message.id + "wlwebhook") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui créerons des webhook ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui créeront des webhook ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -985,7 +985,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`webhookwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed1(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -993,7 +993,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1009,7 +1009,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -1052,7 +1052,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui modifirons le serveur ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui modifiront le serveur ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1080,7 +1080,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1089,7 +1089,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un modifira le serveur ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un modifira le serveur ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1100,7 +1100,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`updateanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **modifira le serveur** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **modifira le serveur** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1109,7 +1109,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send(" `ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -1117,7 +1117,7 @@ module.exports = {
 									if (button.id === message.id + "updatewl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui modifirons le serveur ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est -ce que **je dois punir les personnes de la whitelist qui modifiront le serveur ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1129,7 +1129,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`updatewl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1137,7 +1137,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`updatewl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1145,7 +1145,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1161,7 +1161,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -1204,7 +1204,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui créerons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui créeront des salon ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1232,7 +1232,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1241,7 +1241,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un créera des salon ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un créera des salon ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1252,7 +1252,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`channelscreatesanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **créera un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **créera un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1261,7 +1261,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send(" `ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -1269,7 +1269,7 @@ module.exports = {
 									if (button.id === message.id + "channelscwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui créerons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui créeront des salon ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1281,7 +1281,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`channelscreatewl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1289,7 +1289,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`channelscreatewl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1297,7 +1297,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1313,7 +1313,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -1356,7 +1356,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui modifirons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui modifiront des salon ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1384,7 +1384,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1393,7 +1393,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un modifirons des salon ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un modifira des salon ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1404,7 +1404,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`channelsmodsanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **modifira un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **modifira un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1413,7 +1413,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -1421,7 +1421,7 @@ module.exports = {
 									if (button.id === message.id + "channelmodwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui modifirons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui modifiront des salon ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1433,7 +1433,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`channelsmodwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1441,7 +1441,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`channelsmodwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1449,7 +1449,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1465,7 +1465,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
 4️ ・ Modifier la limite
 
@@ -1508,7 +1508,7 @@ module.exports = {
 									if (button.id === message.id + "banlimit") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Combien de fois **on dois bannir des membres pour que je punissent ?** (*ex: 2*)")
+										let q = await message.channel.send("Combien de fois **vous devez bannir des membres pour que je punisse ?** (*ex: 2*)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1522,7 +1522,7 @@ module.exports = {
 											message.channel.send("Ceci n'est pas un nombre")
 
 										} else {
-											let q2 = await message.channel.send(`En combien **de temps on dois faire ${lowercase} ban pour être punie ?** (*ex: 10s*)`)
+											let q2 = await message.channel.send(`Combien de temps **vous devez faire ${lowercase} ban pour être punie ?** (*ex: 10s*)`)
 											const responseWbSanc2 = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 												max: 1,
 												timeout: 30000
@@ -1557,7 +1557,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui bannirons des membres ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui banniront des membres ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1585,7 +1585,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1594,7 +1594,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un bannira un membre ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un bannira un membre ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1605,7 +1605,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`massbansanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **bannira un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **bannira un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1614,7 +1614,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -1622,7 +1622,7 @@ module.exports = {
 									if (button.id === message.id + "banwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui bannirons des membres ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui banniront des membres ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1634,7 +1634,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`massbanwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1642,7 +1642,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`massbanwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1650,7 +1650,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1712,7 +1712,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui envoie des liens ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui enverront des liens ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1740,7 +1740,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1774,7 +1774,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `invite` ou `all` ! Recommence !")
+											return message.channel.send("`invite` ou `all` ! Recommence !")
 
 										}
 									}
@@ -1782,7 +1782,7 @@ module.exports = {
 									if (button.id === message.id + "linkwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui enverrons des liens ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui enverront des liens ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -1794,7 +1794,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`linkwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1802,7 +1802,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`linkwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -1810,7 +1810,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -1890,7 +1890,7 @@ module.exports = {
 												q2.delete()
 												db.set(`antitokenlimmit1_${message.guild.id}`, lowercase)
 												db.set(`antitokenlimmit2_${message.guild.id}`, lowercase2)
-												message.channel.send(`Si **${lowercase}** utilisateur rejoignent en moins de **${lowercase2}\`** ils ce feront expulser !`)
+												message.channel.send(`Si **${lowercase}** utilisateur rejoignent en moins de **${lowercase2}\`** ils se feront expulser !`)
 												updateembed3(msg)
 											}
 										}
@@ -1908,7 +1908,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois expulser les personnes qui rejoidrons en même temps ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois expulser les personnes qui rejoindront en même temps ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -1936,7 +1936,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -1987,7 +1987,7 @@ module.exports = {
 									if (button.id === message.id + "limittoken") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Quel est **la nouvelle limite de création de compte ?** (*ex: 1j*)")
+										let q = await message.channel.send("Quelle est **la nouvelle limite de création de compte ?** (*ex: 1j*)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2022,7 +2022,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois bannir les token ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois bannir les token ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -2050,7 +2050,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -2068,13 +2068,13 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
 4️ ・ Modifier la limite
 
                     `)
 								.setColor(color)
-								.setTitle(`Deconection de membres`)
+								.setTitle(`Déconnexion de membres`)
 							const button1 = new MessageButton()
 								.setStyle("gray")
 								.setID(message.id + "decoactif")
@@ -2111,7 +2111,7 @@ module.exports = {
 									if (button.id === message.id + "decolimit") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Combien de fois **on dois deconnecter des membres pour que je punissent ?** (*ex: 2*)")
+										let q = await message.channel.send("Combien de fois **vous devez déconnecter des membres pour que je punisse ?** (*ex: 2*)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2125,7 +2125,7 @@ module.exports = {
 											message.channel.send("Ceci n'est pas un nombre")
 
 										} else {
-											let q2 = await message.channel.send(`En combien **de temps on dois faire ${lowercase} deconnecter pour être punie ?** (*ex: 10s*)`)
+											let q2 = await message.channel.send(`En combien de temps **vous devez faire ${lowercase} déconnecter pour être punie ?** (*ex: 10s*)`)
 											const responseWbSanc2 = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 												max: 1,
 												timeout: 30000
@@ -2142,7 +2142,7 @@ module.exports = {
 												q2.delete()
 												db.set(`antideconum_${message.guild.id}`, lowercase)
 												db.set(`antidecotime_${message.guild.id}`, lowercase2)
-												message.channel.send(`Un utilisateur qui fera **${lowercase}** alertes de **Deconection** en moins de **${lowercase2}\`** se fera punir !`)
+												message.channel.send(`Un utilisateur qui fera **${lowercase}** alertes de **Déconnexion** en moins de **${lowercase2}\`** se fera punir !`)
 												updateembed3(msg)
 											}
 										}
@@ -2160,7 +2160,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui deconecterons des membres ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui déconnecteront des membres ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -2188,7 +2188,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -2197,7 +2197,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un deconectera un membre ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un déconnectera un membre ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2208,7 +2208,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`antidecosanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **deconectera un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **déconnectera un membre** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2217,7 +2217,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -2225,7 +2225,7 @@ module.exports = {
 									if (button.id === message.id + "decowl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui deconecterons des membres ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui déconnecteront des membres ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2237,7 +2237,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`antidecowl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2245,7 +2245,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`antidecowl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed3(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2253,7 +2253,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -2269,7 +2269,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -2312,7 +2312,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui supprimerons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui supprimeront des salon ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -2340,7 +2340,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -2349,7 +2349,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un supprimera un salon ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un supprimera un salon ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2360,7 +2360,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`channelsdelsanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **supprimera un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **supprimera un salon** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2369,7 +2369,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -2377,7 +2377,7 @@ module.exports = {
 									if (button.id === message.id + "channeldelwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui supprimerons des salon ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui supprimeront des salon ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2389,7 +2389,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`channelsdelwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2397,7 +2397,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`channelsdelwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2405,7 +2405,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -2421,7 +2421,7 @@ module.exports = {
 								.setColor(color)
 								.setDescription(`
 1️ ・ Modifier l'activité 
-2️ ・ Modifier la sanctions
+2️ ・ Modifier la sanction
 3️ ・ Modifier la whitlist bypass
                     `)
 								.setColor(color)
@@ -2464,7 +2464,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Est ce que **je dois punir les personnes qui ajouterons des bots ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes qui ajouteront des bots ?** (\`oui\` ou \`non\`)")
 
 										const responseWbCr = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
@@ -2492,7 +2492,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbCr.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 
 										}
 									}
@@ -2501,7 +2501,7 @@ module.exports = {
 
 										button.reply.defer(true)
 
-										let q = await message.channel.send("Qu'est ce que je dois faire **quand quelqu'un ajoutera un bot ?** (`ban`, `kick`, `derank`)")
+										let q = await message.channel.send("Qu'est-ce que je dois faire **quand quelqu'un ajoutera un bot ?** (`ban`, `kick`, `derank`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2512,7 +2512,7 @@ module.exports = {
 										const lowercase = CollectedWbSanc.content.toLowerCase()
 										if (lowercase != "cancel" && lowercase == "ban" || lowercase == "kick" || lowercase == "unrank" || lowercase == "derank") {
 											db.set(`botanction_${message.guild.id}`, lowercase.replace("unrank", "derank"))
-											message.channel.send(`Désormais quand quelqu'un **ajoutera un bot** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
+											message.channel.send(`Désormais, quand quelqu'un **ajoutera un bot** il se fera \`${lowercase.replace("unrank", "derank")}\` `)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2521,7 +2521,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `ban`, `kick` ou `derank` ! Recommence !")
+											return message.channel.send("`ban`, `kick` ou `derank` ! Recommence !")
 										}
 
 									}
@@ -2529,7 +2529,7 @@ module.exports = {
 									if (button.id === message.id + "antibotwl") {
 
 										button.reply.defer(true)
-										let q = await message.channel.send("Est ce que **je dois punir les personnes whitlist qui ajouterons des bots ?** (\`oui\` ou \`non\`)")
+										let q = await message.channel.send("Est-ce que **je dois punir les personnes de la whitelist qui ajouteront des bots ?** (\`oui\` ou \`non\`)")
 										const responseWbSanc = await message.channel.awaitMessages(m => m.author.id === message.author.id, {
 											max: 1,
 											timeout: 30000
@@ -2541,7 +2541,7 @@ module.exports = {
 										if (lowercase != "cancel" && lowercase == "oui") {
 											db.set(`botwl_${message.guild.id}`, true)
 
-											message.channel.send(`Les whitelists ne peuvent pas bypass le module  `)
+											message.channel.send(`Les whitelists ne peuvent pas bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2549,7 +2549,7 @@ module.exports = {
 										} else if (lowercase == "non") {
 											db.set(`botwl_${message.guild.id}`, null)
 
-											message.channel.send(`Les whitelists peuvent maintenant bypass le module `)
+											message.channel.send(`Les whitelists peuvent maintenant bypass le module`)
 											updateembed2(msg)
 											q.delete();
 											CollectedWbSanc.delete()
@@ -2557,7 +2557,7 @@ module.exports = {
 										} else {
 											q.delete();
 											CollectedWbSanc.delete()
-											return message.channel.send("C'est sois `oui` ou `non` ! Recommence !")
+											return message.channel.send("`oui` ou `non` ! Recommence !")
 										}
 
 									}
@@ -2736,21 +2736,21 @@ module.exports = {
         **Actif:** ${onoff(ban)}
         **Sanction:** \`${ban2}\`
         **Whitelist bypass:** ${wlbypass(ban3)}
-        **Limit**: \`${ban4}/${ban5}\`
+        **Limite**: \`${ban4}/${ban5}\`
         
         **2️ ・ Multiplication de join**
         **Actif:** ${onoff(antimassjoin)}
-        **Limit**: \`${antimassjoin2}/${antimassjoin3}\`
+        **Limite**: \`${antimassjoin2}/${antimassjoin3}\`
         
         **3️ ・ Création de compte limite**
         **Actif:** ${onoff(antitoken)}
-        **Limit**: \`${antitoken2 !== null ? ms(antitoken2) : "0s"}\`
+        **Limite**: \`${antitoken2 !== null ? ms(antitoken2) : "0s"}\`
         
-        **4️ ・ Deconection de membre**
+        **4️ ・ Déconnexion de membre**
         **Actif:** ${onoff(deco)}
         **Sanction:** \`${deco2}\`
         **Whitelist bypass:** ${wlbypass(deco3)}
-        **Limit**: \`${deco4}/${deco5}\`
+        **Limite**: \`${deco4}/${deco5}\`
         
         **5 ・ Message contenant un lien**
         **Actif:** ${onoff(link)}
@@ -2907,15 +2907,15 @@ module.exports = {
 			const on5 = new MessageButton()
 				.setStyle("blurple")
 				.setID(message.id + "2on")
-				.setLabel("Activer tout les modules")
+				.setLabel("Activer tous les modules")
 			const on6 = new MessageButton()
 				.setStyle("red")
 				.setID(message.id + "2off")
-				.setLabel("Désactiver tout les modules")
+				.setLabel("Désactiver tous les modules")
 			const on7 = new MessageButton()
 				.setStyle("green")
 				.setID(message.id + "2max")
-				.setLabel("Activer tout les modules en max")
+				.setLabel("Activer tous les modules au max")
 			msg.edit(`${db.get(`${message.guild.id}.raidlog`) === null || db.get(`${message.guild.id}.raidlog`) === undefined ? "" : `Salon de raidlog: <#${db.get(`${message.guild.id}.raidlog`)}>`}`, {
 				embed: embed2,
 				components: [
@@ -3053,15 +3053,15 @@ module.exports = {
 			const on5 = new MessageButton()
 				.setStyle("blurple")
 				.setID(message.id + "on")
-				.setLabel("Activer tout les modules")
+				.setLabel("Activer tous les modules")
 			const on6 = new MessageButton()
 				.setStyle("red")
 				.setID(message.id + "off")
-				.setLabel("Désactiver tout les modules")
+				.setLabel("Désactiver tous les modules")
 			const on7 = new MessageButton()
 				.setStyle("green")
 				.setID(message.id + "max")
-				.setLabel("Activer tout les modules en max")
+				.setLabel("Activer tous les modules au max")
 			msg.edit(`${db.get(`${message.guild.id}.raidlog`) === null || db.get(`${message.guild.id}.raidlog`) === undefined ? "" : `Salon de raidlog: <#${db.get(`${message.guild.id}.raidlog`)}>`}`, {
 				embed: embed,
 				components: [
