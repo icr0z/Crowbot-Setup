@@ -1,14 +1,23 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-const { MessageActionRow, MessageButton, MessageMenuOption, MessageMenu } = require('discord-buttons');
-const {MessageEmbed} = require("discord.js")
+const { 
+    MessageActionRow, 
+    MessageButton, 
+    MessageMenuOption, 
+    MessageMenu 
+} = require('discord-buttons');
+
+const { MessageEmbed } = require("discord.js")
+
 function sleep(ms) {
     return new Promise((resolve) => {
       setTimeout(resolve, ms)})}
+
 module.exports = {
     name: 'banlist',
     aliases: [],
     run: async (client, message, args, prefix, color) => {
+
         let perm = ""
         message.member.roles.cache.forEach(role => {
             
@@ -42,7 +51,6 @@ module.exports = {
               .setColor(color)
               .setFooter(`Total: ${bList.length} • ${client.config.name}`)
     
-    
             message.channel.send(embed).then(async tdata => {
                 if (bList.length > 15) {
                     const B1 = new MessageButton()
@@ -73,9 +81,8 @@ module.exports = {
                               .setColor(color)
                               .setFooter(`Total: ${bList.length} • ${client.config.name}`)
     
-    
                         })
-                        // message.channel.send(embeds)
+
                     }, 60000 * 5)
                     client.on("clickButton", (button) => {
                         if (button.clicker.user.id !== message.author.id) return
@@ -92,7 +99,6 @@ module.exports = {
                             if (p0 === undefined || p1 === undefined) {
                                 return
                             }
-    
     
                             embed        .setDescription(bans
                     .map(r => r)
@@ -120,7 +126,6 @@ module.exports = {
                             if (p0 === undefined || p1 === undefined) {
                                 return
                             }
-    
     
                             embed        .setDescription(bans
                     .map(r => r)
