@@ -24,23 +24,23 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Modifier le rôle",
-					description: "Permet de choisir le rôle",
+					value: "Modifier le Rôle",
+					description: "Permet de choisir le Rôle",
 					emoji: "🏷️"
 				},
 				{
-					value: "Supprimer le rôle",
-					description: "Permet de supprimer le rôle",
+					value: "Supprimer le Rôle",
+					description: "Permet de supprimer le Rôle",
 					emoji: "🛎️"
 				},
 				{
-					value: "Modifier le statut",
-					description: "Permet de choisir le statut",
+					value: "Modifier le Statut",
+					description: "Permet de choisir le Statut",
 					emoji: "📩"
 				},
 				{
-					value: "Supprimer le statut",
-					description: "Permet de supprimer le statut",
+					value: "Supprimer le Statut",
+					description: "Permet de supprimer le Statut",
 					emoji: "✉️"
 				},
 
@@ -52,7 +52,7 @@ module.exports = {
 				.setID(message.id + 'MenuSelection')
 				.setMaxValues(1)
 				.setMinValues(1)
-				.setPlaceholder('Faix un choix');
+				.setPlaceholder('Fais un choix');
 			menuoptions.forEach(option => {
 				let row = new MessageMenuOption()
 					.setLabel(option.label ? option.label : option.value)
@@ -99,23 +99,23 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Modifier le rôle",
-					description: "Permet de choisir le rôle",
+					value: "Modifier le Rôle",
+					description: "Permet de choisir le Rôle",
 					emoji: "🏷️"
 				},
 				{
-					value: "Supprimer le rôle",
-					description: "Permet de supprimer le rôle",
+					value: "Supprimer le Rôle",
+					description: "Permet de supprimer le Rôle",
 					emoji: "🛎️"
 				},
 				{
-					value: "Modifier le statut",
-					description: "Permet de choisir le status",
+					value: "Modifier le Statut",
+					description: "Permet de choisir le Statut",
 					emoji: "📩"
 				},
 				{
-					value: "Supprimer le statut",
-					description: "Permet de supprimer le statut",
+					value: "Supprimer le Statut",
+					description: "Permet de supprimer le Statut",
 					emoji: "✉️"
 				},
 
@@ -126,7 +126,7 @@ module.exports = {
 				.setID(message.id + 'MenuSelection')
 				.setMaxValues(1)
 				.setMinValues(1)
-				.setPlaceholder('Faix un choix');
+				.setPlaceholder('Fais un choix');
 			menuoptions.forEach(option => {
 				let row = new MessageMenuOption()
 					.setLabel(option.label ? option.label : option.value)
@@ -161,7 +161,6 @@ module.exports = {
 						components: [],
 						embed: embed
 					})
-					// message.channel.send(embeds)
 				}, 60000 * 5)
 				client.on('clickMenu', async (menu) => {
 					if (message.author !== menu.clicker.user || menu.message.id !== m.id) return;
@@ -179,7 +178,7 @@ module.exports = {
 
 				function menuselection(menu) {
 					switch (menu.values[0]) {
-						case "Modifier le rôle":
+						case "Modifier le Rôle":
 							message.channel.send(`Quel est **le nouveau rôle de soutien** ?`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
@@ -192,7 +191,7 @@ module.exports = {
 
 										var msg = cld.first();
 										var role = message.guild.roles.cache.get(msg.content) || msg.mentions.roles.first()
-										if (!role) return message.channel.send(`Aucun rôles trouvé pour \`${msg.content}\`.`);
+										if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${msg.content}\`.`);
 
 										db.set(`rolesupp_${message.guild.id}`, role.id)
 										mp.delete()
@@ -202,11 +201,11 @@ module.exports = {
 									});
 							})
 							break
-						case "Supprimer le rôle":
+						case "Supprimer le Rôle":
 							db.delete(`rolesupp_${message.guild.id}`)
 							updateembed(m)
 							break
-						case "Modifier le statut":
+						case "Modifier le Statut":
 							message.channel.send(`Quel est **le nouveau statut** ?`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
@@ -228,7 +227,7 @@ module.exports = {
 							})
 
 							break
-						case "Supprimer le statut":
+						case "Supprimer le Statut":
 							db.delete(`txtsupp_${message.guild.id}`)
 							updateembed(m)
 							break
