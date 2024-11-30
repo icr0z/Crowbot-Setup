@@ -46,10 +46,10 @@ Actuel: \`${client.user.username}\`
 **2・Changer l'avatar**
 Actuel: [\`Clique ici\`](${client.user.displayAvatarURL()})
 
-**3・Changer l'activitée**
+**3・Changer l'activité**
 Actuel: \`${client.user.presence.activities[0] ? `${activity[client.user.presence.activities[0].type]} ${client.user.presence.activities[0].name}` : `❌`}\`  
 
-**4・Changer la presence du bot**
+**4・Changer la présence du bot**
 Actuel: ${status(client.user.presence.status)}
 
 **5・Secur invite**
@@ -129,7 +129,7 @@ Actuel: ${secur(db.get(`antijoinbot_${client.user.id}`))}
                         if (button.id === "deuxpr" + message.id) {
 
                             button.reply.defer(true)
-                            let question = await message.channel.send("Quel est **le nouvelle avatar du bot ?** (*liens*)")
+                            let question = await message.channel.send("Quel est **le nouveau avatar du bot ?** (*liens*)")
                             const filter = m => message.author.id === m.author.id;
                             message.channel.awaitMessages(filter, {
                                 max: 1,
@@ -153,7 +153,7 @@ Actuel: ${secur(db.get(`antijoinbot_${client.user.id}`))}
                         if (button.id === "troispr" + message.id) {
 
                             button.reply.defer(true)
-                            let question = await message.channel.send("Quel est **le nouveau type d'activiter du bot ?** (\`play\`, \`stream\`, \`watch\`, \`listen\`)")
+                            let question = await message.channel.send("Quel est **le nouveau type d'activité du bot ?** (\`play\`, \`stream\`, \`watch\`, \`listen\`)")
                             const filter = m => message.author.id === m.author.id;
 
                             message.channel.awaitMessages(filter, {
@@ -177,7 +177,7 @@ Actuel: ${secur(db.get(`antijoinbot_${client.user.id}`))}
                                     return message.channel.send("Type d'activité invalide ! Recommence !")
                                 }
 
-                                let question2 = await message.channel.send("Quel est **la nouvelle activiter du bot ?** (*message*)")
+                                let question2 = await message.channel.send("Quelle est **la nouvelle activité du bot ?** (*message*)")
 
                                 message.channel.awaitMessages(filter, {
                                     max: 1,
@@ -200,7 +200,7 @@ Actuel: ${secur(db.get(`antijoinbot_${client.user.id}`))}
                         if (button.id === "quattrepr" + message.id) {
 
                             button.reply.defer(true)
-                            let question = await message.channel.send(`Quel est **la nouvelle presence du bot ?** (\`dnd\`, \`idle\`, \`online\`, \`invisible\`)`)
+                            let question = await message.channel.send(`Quelle est **la nouvelle présence du bot ?** (\`dnd\`, \`idle\`, \`online\`, \`invisible\`)`)
                             const filter = m => message.author.id === m.author.id;
 
                             message.channel.awaitMessages(filter, {
@@ -221,7 +221,7 @@ Actuel: ${secur(db.get(`antijoinbot_${client.user.id}`))}
                                 } else if (collected.first().content.toLowerCase().startsWith("invisible")) {
                                     type = "invisible"
                                 } else {
-                                    return message.channel.send(`Presence incorect ! Recommence !`)
+                                    return message.channel.send(`Présence incorrect ! Recommence !`)
                                 }
                                 client.user.setPresence({
                                     status: type
