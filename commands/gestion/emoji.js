@@ -26,7 +26,7 @@ module.exports = {
 				if (!emoji) return message.channel.send('');
 
 				let customemoji = Discord.Util.parseEmoji(emoji);
-				if (!customemoji.id) return message.channel.send(`Je n'est pas accès à cette emoji.`);
+				if (!customemoji.id) return message.channel.send(`Je n'ai pas accès à cette emoji.`);
 
 				if (customemoji.id) {
 					const Link = `https://cdn.Discordapp.com/emojis/${customemoji.id}.${
