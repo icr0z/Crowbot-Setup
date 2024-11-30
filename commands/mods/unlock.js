@@ -24,14 +24,14 @@ module.exports = {
 							SEND_MESSAGES: true,
 							SPEAK: true,
 						})
-					}, `Tout les salon fermé par ${message.author.tag}`);
+					}, `Tous les salons sont ouverts par ${message.author.tag}`);
 
-
-
-					message.channel.send(`${message.guild.channels.cache.size} salons ouvert`);
+					message.channel.send(`${message.guild.channels.cache.size} salons ouverts`);
 
 				}
+
 			} else {
+
 				let perm = ""
 				message.member.roles.cache.forEach(role => {
 					if (db.get(`modsp_${message.guild.id}_${role.id}`)) perm = null
@@ -50,12 +50,8 @@ module.exports = {
 					}, `Salon fermé par ${message.author.tag}`);
 
 					message.channel.send(`Les membres peuvent parler dans <#${channel.id}>`);
-
-
-
 				}
 			}
-
 		} catch (error) {
 			return;
 		}
