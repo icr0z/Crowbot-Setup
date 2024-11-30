@@ -1,15 +1,20 @@
-const Discord = require("discord.js"),
-	{
-		MessageEmbed
-	} = require("discord.js"),
+const Discord = require('discord.js')
+const db = require('quick.db')
+const {
+	MessageActionRow,
+	MessageButton,
+	MessageMenuOption,
+	MessageMenu
+} = require('discord-buttons');
+
+const { MessageEmbed } = require("discord.js")
 
 	ms = require("ms"),
 	cooldown = {}
-const db = require("quick.db")
 
 function bantime(message, user, time, authorcooldown) {
 	message.guild.members.ban(user.id, {
-		reason: `Bannis par ${message.author.tag} pour: Sans raison`,
+		reason: `Banni par ${message.author.tag} pour: sans raison`,
 		days: 7
 	}).then(r => {
 		authorcooldown.limit++
@@ -24,7 +29,7 @@ function bantime(message, user, time, authorcooldown) {
 
 function bantimereason(message, user, time, authorcooldown, reason) {
 	message.guild.members.ban(user.id, {
-		reason: `Bannis par ${message.author.tag} pour: ${reason}`,
+		reason: `Banni par ${message.author.tag} pour: ${reason}`,
 		days: 7
 	}).then(r => {
 		authorcooldown.limit++
@@ -39,7 +44,7 @@ function bantimereason(message, user, time, authorcooldown, reason) {
 
 function ban(message, user, authorcooldown) {
 	message.guild.members.ban(user.id, {
-		reason: `Bannis par ${message.author.tag} pour: Sans raison`,
+		reason: `Banni par ${message.author.tag} pour: sans raison`,
 		days: 7
 	}).then(r => {
 		authorcooldown.limit++
@@ -60,11 +65,11 @@ function banreason(message, user, authorcooldown, reason) {
 		}, 120000);
 	})
 }
+
 module.exports = {
 	name: 'ban',
 	aliases: ["setban"],
 	run: async (client, message, args, prefix, color) => {
-
 
 		let perm = ""
 		message.member.roles.cache.forEach(role => {
@@ -80,9 +85,8 @@ module.exports = {
 					limit: 0
 				}
 				var authorcooldown = cooldown[message.author.id]
-				if (authorcooldown.limit > 2) return message.channel.send(`Vous avez atteint votre limite de **bannisement**, veuillez retenter plus tard!`);
+				if (authorcooldown.limit > 2) return message.channel.send(`Vous avez atteint votre limite de **bannisement**, veuillez réessayer plus tard !`);
 
-				//var user = message.mentions.users.first() || client.users.cache.get(args[0])
 				var user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 				if (!user) return message.channel.send(`Aucun membre trouvé pour \`${args[0] || "rien"}\``)
                 if (user.id === message.author.id) {
@@ -100,37 +104,31 @@ module.exports = {
 							bantimereason(message, user, time, authorcooldown, reason)
 							user.send(`Vous avez été **ban** de **${message.guild.name}** pour \`${reason}\``)
 
-							if (logsmod) logsmod.send(
-								new Discord.MessageEmbed()
-								//.setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 								.setColor(color)
-								//.setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-								//.setTimestamp() 
-								//  .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pendant**: \`${args[1]}\`\n**Pour** \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-								.setDescription(`${message.author} a **ban ${args[1]}** ${user} pour \`${reason}\``)
-
+						    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+					    		.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    		.setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
 							)
+
 						} else {
+
 							message.channel.send(`${message.mentions.members.first().user} a été **ban ${args[1]}**`);
 							bantime(message, user, time, authorcooldown)
 							user.send(`Vous avez été **ban ${args[1]}** de **${message.guild.name}**`)
 
-							if (logsmod) logsmod.send(
-								new Discord.MessageEmbed()
-								// .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-								.setColor(color)
-								// .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-								//.setTimestamp() 
-								//.setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pendant**: \`${args[1]}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-								.setDescription(`${message.author} a **ban ${args[1]}** ${user}`)
-
-
+							if (logsmod) logsmod.send(new Discord.MessageEmbed()
+				  				.setColor(color)
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+				     			.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    		.setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
 							)
 						}
 
-						// -- 
 					} else {
 
 						var reason = args.slice(1).join(" ")
@@ -139,56 +137,49 @@ module.exports = {
 							banreason(message, user, authorcooldown, reason)
 							user.send(`Vous avez été **ban** de **${message.guild.name}** pour \`${reason}\``)
 
-							if (logsmod) logsmod.send(
-								new Discord.MessageEmbed()
-								// .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 								.setColor(color)
-								//.setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-								//      .setTimestamp() 
-								//     .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pour** \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-								.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
-
-
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+				     			.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+				 	    		.setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
 							)
+
 						} else {
+
 							message.channel.send(`${user} a été **ban**`);
 							ban(message, user, authorcooldown)
 							user.send(`Vous avez été **ban** de **${message.guild.name}**`)
 
-							if (logsmod) logsmod.send(
-								new Discord.MessageEmbed()
-								//       .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 								.setColor(color)
-								//   .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-								//     .setTimestamp() 
-								//    .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-								.setDescription(`${message.author} a **ban** ${user}`)
-
-
-
+						     	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+					    		.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    		.setFooter(`${client.config.name}`)
+					    		.setTimestamp() 
 							)
 						}
 					}
+
 				} else {
+
 					message.channel.send(`${user} a été **ban**`);
 					ban(message, user, authorcooldown)
 					user.send(`Vous avez été **ban** de **${message.guild.name}**`)
 
-					if (logsmod) logsmod.send(
-						new Discord.MessageEmbed()
-						//        .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+					if (logsmod) logsmod.send(new Discord.MessageEmbed()
 						.setColor(color)
-						//      .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-						//    .setTimestamp() 
-						//   .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-						.setDescription(`${message.author} a **ban** ${user}`)
-
-
+				    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+				    	.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+				    	.setFooter(`${client.config.name}`)
+				    	.setTimestamp() 
 
 					)
 				}
+
 			} else {
+
 				user = await client.users.fetch(args[0])
 				if (user) {
 					if (args[1]) {
@@ -199,14 +190,12 @@ module.exports = {
 								message.channel.send(`${user} a été **ban ${args[1]}** pour \`${reason}\``);
 								user.send(`Vous avez été **ban** de **${message.guild.name}** pour \`${reason}\``)
 								bantimereason(message, user, time, authorcooldown, reason)
-								if (logsmod) logsmod.send(
-									new Discord.MessageEmbed()
-									//  .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+								if (logsmod) logsmod.send(new Discord.MessageEmbed()
 									.setColor(color)
-									//              .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-									//           .setTimestamp() 
-									//         .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pendant**: \`${args[1]}\`\n**Pour** \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-									.setDescription(`${message.author} a **ban ${args[1]}** ${user} pour \`${reason}\``)
+								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setFooter(`${client.config.name}`)
+								    .setTimestamp() 
 
 
 								)
@@ -214,20 +203,16 @@ module.exports = {
 								message.channel.send(`${user} a été **ban ${args[1]}** `);
 								user.send(`Vous avez été **ban** de **${message.guild.name}**`)
 								bantime(message, user, time, authorcooldown)
-								if (logsmod) logsmod.send(
-									new Discord.MessageEmbed()
-									//.setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-									//  .setColor(color)
-									//        .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-									//      .setTimestamp() 
-									//     .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pendant**: \`${args[1]}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-									.setDescription(`${message.author} a **ban ${args[1]}** ${user}`)
-
+								if (logsmod) logsmod.send(new Discord.MessageEmbed()
+									.setColor(color)
+								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setFooter(`${client.config.name}`)
+								    .setTimestamp() 
 
 								)
 							}
 
-							// -- 
 						} else {
 
 							var reason = args.slice(1).join(" ")
@@ -235,56 +220,46 @@ module.exports = {
 								message.channel.send(`${user} à été **ban** pour \`${reason}\``);
 								user.send(`Vous avez été **ban** de **${message.guild.name}** pour \`${reason}\``)
 								banreason(message, user, authorcooldown, reason)
-								if (logsmod) logsmod.send(
-									new Discord.MessageEmbed()
-									//             .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+								if (logsmod) logsmod.send(new Discord.MessageEmbed()
 									.setColor(color)
-									//           .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-									//         .setTimestamp() 
-									//        .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pour** \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
-									.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
-
+								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setFooter(`${client.config.name}`)
+								    .setTimestamp() 
 
 								)
+
 							} else {
+
 								message.channel.send(`${user} à été **ban**`);
 								user.send(`Vous avez été **ban** de **${message.guild.name}**`)
 								ban(message, user, authorcooldown)
-								if (logsmod) logsmod.send(
-									new Discord.MessageEmbed()
-									//           .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
-									//         .setColor(color)
-									//       .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-									//   .setTimestamp() 
-									//      .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-									.setDescription(`${message.author} a **ban** ${user}`)
-
-
+								if (logsmod) logsmod.send(Discord.MessageEmbed()
+									.setColor(color)
+								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setFooter(`${client.config.name}`)
+								    .setTimestamp() 
 								)
 							}
 						}
+
 					} else {
+
 						message.channel.send(`${user} à été **ban**`);
 						user.send(`Vous avez été **ban** de **${message.guild.name}**`)
 						ban(message, user, authorcooldown)
-						if (logsmod) logsmod.send(
-							new Discord.MessageEmbed()
-							// .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+						if (logsmod) logsmod.send(new Discord.MessageEmbed()
 							.setColor(color)
-							//        .setTitle(`<:protection:847072581382438953> Modération • Type: **\`bannissement\`**`)
-							//      .setTimestamp() 
-							//     .setDescription(` **Bannissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-							.setDescription(`${message.author} a **ban** ${user}`)
-
+						    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+					    	.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    	.setFooter(`${client.config.name}`)
+						    .setTimestamp() 
 
 						)
 					}
 				}
 			}
-
-
-
-
 		}
 	}
 }
