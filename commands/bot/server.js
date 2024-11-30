@@ -1,6 +1,11 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-const { MessageActionRow, MessageButton, MessageMenuOption, MessageMenu } = require('discord-buttons');
+const { 
+    MessageActionRow, 
+    MessageButton, 
+    MessageMenuOption, 
+    MessageMenu 
+} = require('discord-buttons');
 
 
 module.exports = {
@@ -43,7 +48,7 @@ module.exports = {
 
                 let guild = null;
 
-                if (!args[1]) return message.channel.send("Merci d'entrer le nom d'un serveur ou je me trouve")
+                if (!args[1]) return message.channel.send("Merci d'entrer le nom d'un serveur où je me trouve")
 
                 if (args[1]) {
                     let fetched = client.guilds.cache.find(g => g.name.toLowerCase().includes(args.slice(1).join(" ")));
@@ -127,7 +132,6 @@ module.exports = {
 
 
                             })
-                            // message.channel.send(embeds)
                         }, 60000 * 5)
                         client.on("clickButton", (button) => {
                             if (button.id === "allserv1") {
