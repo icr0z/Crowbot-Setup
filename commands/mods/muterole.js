@@ -6,15 +6,14 @@ const {
 	MessageMenuOption,
 	MessageMenu
 } = require('discord-buttons');
-const {
-	MessageEmbed
-} = require("discord.js")
+
+const { MessageEmbed } = require("discord.js")
 
 module.exports = {
 	name: 'muterole',
 	aliases: [],
+	run: async ( client, message, args, prefix, color ) => {
 
-	run: async (client, message, args, prefix, color) => {
 		let perm = ""
 		message.member.roles.cache.forEach(role => {
 			if (db.get(`admin_${message.guild.id}_${role.id}`)) perm = null
@@ -44,7 +43,7 @@ module.exports = {
 							CONNECT: false,
 							ADD_REACTIONS: false
 						}, "Muterole")
-						embed2.setDescription(`**__D'autres permission déjà existantes peuvent rendre innefficace le mute pour certains rôles dans les salons suivants :__**\n\n**${channel.name}**\n- ${muterole.name}\n`, true)
+						embed2.setDescription(`**__D'autres permission déjà existantes peuvent rendre inefficace le mute pour certains rôles dans les salons suivants :__**\n\n**${channel.name}**\n- ${muterole.name}\n`, true)
 						embed2.setFooter(`${client.config.name} Tous les rôles ayant la permissons \"envoyer des messages\" en vert seront insensible au mute`)
 
 					})
