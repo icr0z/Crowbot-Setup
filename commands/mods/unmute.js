@@ -17,12 +17,15 @@ function unban(message, user, authorcooldown) {
         }, 120000);
     })
 };
+
 module.exports = {
     name: 'unmute',
     aliases: [],
     run: async (client, message, args, prefix, color) => {
+
         let chx = db.get(`logmod_${message.guild.id}`);
         const logschannel = message.guild.channels.cache.get(chx)
+
         if (args[0] == "all") {
             let perm = ""
             message.member.roles.cache.forEach(role => {
@@ -40,8 +43,6 @@ module.exports = {
                         m.send(`Vous avez été **unmute** de ${message.guild.name}`)
                         m.roles.remove(muteRole.id)
                         db.set(`mute_${message.guild.id}_${m.user.id}`, false)
-
-
                     })
             }
         } else if (args[0]) {
@@ -75,8 +76,10 @@ module.exports = {
 
                 logschannel.send(new Discord.MessageEmbed()
                     .setColor(color)
-
+                    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
                     .setDescription(`${message.author} a **unmute** ${user}`)
+                    .setFooter(`${client.config.name}`)
+                    .setTimestamp() 
                 )
             }
         }
