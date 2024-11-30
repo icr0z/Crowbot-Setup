@@ -10,7 +10,6 @@ const {
 module.exports = {
 	name: 'renew',
 	aliases: ["nuke", "purge"],
-
 	run: async (client, message, args, prefix, color) => {
 
 		if (args[0] === "all") {
@@ -30,17 +29,16 @@ module.exports = {
 							rateLimitPerUser: channele.rateLimitPerUser,
 							permissions: channele.withPermissions,
 							position: channele.rawPosition,
-							reason: `Tout les salon ont été recréé par ${message.author.tag} (${message.author.id})`
+							reason: `Tous les salons ont été recréés par ${message.author.tag} (${message.author.id})`
 						})
 						.catch(err => {})
 					channele.delete().catch(err => {})
 				})
 
-
-
 			}
 
 		} else {
+
 			let perm = ""
 			message.member.roles.cache.forEach(role => {
 				if (db.get(`admin_${message.guild.id}_${role.id}`)) perm = null
@@ -61,13 +59,14 @@ module.exports = {
 							rateLimitPerUser: channel.rateLimitPerUser,
 							permissions: channel.withPermissions,
 							position: channel.rawPosition,
-							reason: `le salon a été recréé par ${message.author.tag} (${message.author.id})`
+							reason: `Le salon a été recréé par ${message.author.tag} (${message.author.id})`
 						})
 						channel.delete()
 						ee.send(`${message.author} le salon a été recréé`)
 					} catch (error) {
 						return;
 					}
+
 				} else {
 
 					try {
@@ -82,7 +81,7 @@ module.exports = {
 							rateLimitPerUser: channel.rateLimitPerUser,
 							permissions: channel.withPermissions,
 							position: channel.rawPosition,
-							reason: `le salon a été recréé par ${message.author.tag} (${message.author.id})`
+							reason: `Le salon a été recréé par ${message.author.tag} (${message.author.id})`
 						})
 						channel.delete()
 						ee.send(`${message.author} le salon a été recréé`)
@@ -93,8 +92,6 @@ module.exports = {
 
 					message.channel.send("le salon a été recréé : " + channel.name)
 				}
-
-
 			}
 		}
 	}
