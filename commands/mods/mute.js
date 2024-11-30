@@ -1,15 +1,21 @@
-const Discord = require("discord.js"),
-    ms = require("ms"),
-    cooldown = {}
-const db = require("quick.db")
+const Discord = require('discord.js')
+const db = require('quick.db')
+const {
+	MessageActionRow,
+	MessageButton,
+	MessageMenuOption,
+	MessageMenu
+} = require('discord-buttons');
 
+const { MessageEmbed } = require("discord.js")
 
+	ms = require("ms"),
+	cooldown = {}
 
 module.exports = {
     name: 'mute',
     aliases: [],
     run: async (client, message, args, prefix, color) => {
-
 
         let perm = ""
         message.member.roles.cache.forEach(role => {
@@ -41,7 +47,9 @@ module.exports = {
                     }, 120000);
                 })
             };
+
             if (args[0]) {
+
                 let chx = db.get(`logmod_${message.guild.id}`);
                 const logsmod = message.guild.channels.cache.get(chx)
 
@@ -64,7 +72,7 @@ module.exports = {
                 }
                 var authorcooldown = cooldown[message.author.id]
 
-                if (authorcooldown.limit >= 5) return message.channel.send(`Vous avez atteint votre limite de **mute**, veuillez retenter plus tard!`);
+                if (authorcooldown.limit >= 5) return message.channel.send(`Vous avez atteint votre limite de **mute**, veuillez réessayer plus tard !`);
                 if (!muterole) {
                     message.channel.send("Création d'un rôle muet...")
                     muterole = await message.guild.roles.create({
@@ -80,9 +88,7 @@ module.exports = {
                     }, "Muterole"))
                     db.set(`mRole_${message.guild.id}`, `${muterole.id}`)
 
-
                 }
-
 
                 if (args[1]) {
                     var time = ms(args[1].replace("j", "d"))
@@ -92,27 +98,32 @@ module.exports = {
                             message.channel.send(`${user} a été **mute ${args[1]}** pour \`${reason}\``);
                             user.send(`Vous avez été **mute ${args[1]}** de ${message.guild.name} pour \`${reason}\``)
                             mutetime(user, time, authorcooldown, muterole)
-                            if (logsmod) logsmod.send(
-                                new Discord.MessageEmbed()
-                                .setColor(color)
-                                .setDescription(`${message.author} a **mute ${args[1]}** ${user} pour \`${reason}\``)
 
+                            if (logsmod) logsmod.send(new Discord.MessageEmbed()
+                                .setColor(color)
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
                             )
+
                         } else {
+
                             message.channel.send(`${user} a été **mute ${args[1]}**`);
                             user.send(`Vous avez été **mute ${args[1]}** de ${message.guild.name}`)
                             mutetime(user, time, authorcooldown, muterole)
-                            if (logsmod) logsmod.send(
-                                new Discord.MessageEmbed()
-                                .setColor(color)
-                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
 
+                            if (logsmod) logsmod.send(new Discord.MessageEmbed()
+                                .setColor(color)
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
                             )
                         }
 
-                        // -- 
                     } else {
 
                         var reason = args.slice(1).join(" ")
@@ -120,37 +131,45 @@ module.exports = {
                             message.channel.send(`${user} a été **mute** pour \`${reason}\``);
                             user.send(`Vous avez été **mute** de ${message.guild.name} pour \`${reason}\``)
                             mute(user, authorcooldown, muterole)
-                            if (logsmod) logsmod.send(
-                                new Discord.MessageEmbed()
-                                .setColor(color)
-                                .setDescription(`${message.author} a **mute** ${user} pour \`${reason}\``)
 
+                            if (logsmod) logsmod.send(new Discord.MessageEmbed()
+                                .setColor(color)
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
                             )
+
                         } else {
+
                             message.channel.send(`${user} a été **mute**`)
                             user.send(`Vous avez été **mute** de ${message.guild.name}`)
-
                             mute(user, authorcooldown, muterole)
-                            if (logsmod) logsmod.send(
-                                new Discord.MessageEmbed()
-                                .setColor(color)
-                                .setDescription(`${message.author} a **mute** ${user}`)
+                            if (logsmod) logsmod.send(new Discord.MessageEmbed()
 
+                                .setColor(color)
+				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setFooter(`${client.config.name}`)
+				    			.setTimestamp() 
 
                             )
                         }
                     }
+
                 } else {
+
                     message.channel.send(`${user} a été **mute**`);
                     user.send(`Vous avez été **mute** de ${message.guild.name}`)
                     mute(user, authorcooldown, muterole)
-                    if (logsmod) logsmod.send(
-                        new Discord.MessageEmbed()
+
+                    if (logsmod) logsmod.send(new Discord.MessageEmbed()
                         .setColor(color)
-                        .setDescription(`${message.author} a **mute** ${user}`)
-
-
+				    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+                        .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                        .setFooter(`${client.config.name}`)
+				    	.setTimestamp() 
                     )
                 }
             } else {}
