@@ -1,6 +1,12 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-const { MessageActionRow, MessageButton, MessageMenuOption, MessageMenu } = require('discord-buttons');
+const { 
+    MessageActionRow, 
+    MessageButton,
+    MessageMenuOption,
+    MessageMenu 
+} = require('discord-buttons');
+
 const ms = require("ms")
 function duration(mss) {
     const sec = Math.floor((mss / 1000) % 60).toString()
@@ -54,7 +60,7 @@ module.exports = {
                     } else if(args[1].toLowerCase() === "clear") {
                         db.delete(`backupserv_${client.user.id}`)
                        
-                        return message.channel.send(`Toute les Backups d'emoji ont était supprimés.`);
+                        return message.channel.send(`Toutes les Backups d'emoji ont été supprimées.`);
                    
                     } else if(args[1].toLowerCase() === "load") {
                         let timeout = 2400000;
@@ -63,7 +69,7 @@ module.exports = {
                         if (daily != null && daily >= Date.now()) {
                         
                        
-                          message.channel.send(`Une backup à déjà été charger sur le serveur, re essayer dans ${duration(daily - Date.now())} !`)
+                          message.channel.send(`Une backup a déjà été chargée sur le serveur, réessayer dans ${duration(daily - Date.now())} !`)
                       } else {  
                          let code = args[2]
                          if(!code ) return
@@ -239,7 +245,7 @@ module.exports = {
                 } else if(args[1].toLowerCase() === "clear") {
                     db.delete(`backupsemoji_${client.user.id}`)
                    
-                    return message.channel.send(`Toute les Backups d'emoji ont était supprimés.`);
+                    return message.channel.send(`Toutes les Backups d'emoji ont été supprimées.`);
                
                 } else if(args[1].toLowerCase() === "load") {
                     let timeout = 2400000;
@@ -247,7 +253,7 @@ module.exports = {
                     if (daily != null && daily >= Date.now()) {
                         
                        
-                        message.channel.send(`Une backup à déjà été charger sur le serveur, re essayer dans ${duration(daily - Date.now())} !`)
+                        message.channel.send(`Une backup a déjà été chargée sur le serveur, réeessayer dans ${duration(daily - Date.now())} !`)
                   } else {  
                      let code = args[2]
                      if(!code ) return
