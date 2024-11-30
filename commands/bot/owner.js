@@ -117,7 +117,6 @@ module.exports = {
 
 
 							})
-							// message.channel.send(embeds)
 						}, 60000 * 5)
 						client.on("clickButton", (button) => {
 							if (button.clicker.user.id !== message.author.id) return;
