@@ -107,7 +107,7 @@ module.exports = {
 							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 								.setColor(color)
 						    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-					    		.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    		.setDescription(`${message.author} a **ban ${args[1]}** ${user} pour \`${reason}\``)
 					    		.setFooter(`${client.config.name}`)
 				    			.setTimestamp() 
 
@@ -122,7 +122,7 @@ module.exports = {
 							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 				  				.setColor(color)
 				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-				     			.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+				     			.setDescription(`${message.author} a **ban ${args[1]}** ${user}`)
 					    		.setFooter(`${client.config.name}`)
 				    			.setTimestamp() 
 
@@ -155,7 +155,7 @@ module.exports = {
 							if (logsmod) logsmod.send(new Discord.MessageEmbed()
 								.setColor(color)
 						     	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-					    		.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    		.setDescription(`${message.author} a **ban** ${user}`)
 					    		.setFooter(`${client.config.name}`)
 					    		.setTimestamp() 
 							)
@@ -171,7 +171,7 @@ module.exports = {
 					if (logsmod) logsmod.send(new Discord.MessageEmbed()
 						.setColor(color)
 				    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-				    	.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+				    	.setDescription(`${message.author} a **ban** ${user}`)
 				    	.setFooter(`${client.config.name}`)
 				    	.setTimestamp() 
 
@@ -193,7 +193,7 @@ module.exports = {
 								if (logsmod) logsmod.send(new Discord.MessageEmbed()
 									.setColor(color)
 								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setDescription(`${message.author} a **ban ${args[1]}** ${user} pour \`${reason}\``)
 								    .setFooter(`${client.config.name}`)
 								    .setTimestamp() 
 
@@ -206,7 +206,7 @@ module.exports = {
 								if (logsmod) logsmod.send(new Discord.MessageEmbed()
 									.setColor(color)
 								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setDescription(`${message.author} a **ban ${args[1]}** ${user}`)
 								    .setFooter(`${client.config.name}`)
 								    .setTimestamp() 
 
@@ -237,7 +237,7 @@ module.exports = {
 								if (logsmod) logsmod.send(Discord.MessageEmbed()
 									.setColor(color)
 								    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-								    .setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+								    .setDescription(`${message.author} a **ban** ${user}`)
 								    .setFooter(`${client.config.name}`)
 								    .setTimestamp() 
 								)
@@ -252,7 +252,7 @@ module.exports = {
 						if (logsmod) logsmod.send(new Discord.MessageEmbed()
 							.setColor(color)
 						    .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-					    	.setDescription(`${message.author} a **ban** ${user} pour \`${reason}\``)
+					    	.setDescription(`${message.author} a **ban** ${user}`)
 					    	.setFooter(`${client.config.name}`)
 						    .setTimestamp() 
 
