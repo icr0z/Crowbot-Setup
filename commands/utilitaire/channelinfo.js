@@ -6,7 +6,6 @@ const {
 	MessageMenuOption,
 	MessageMenu
 } = require('discord-buttons');
-const axios = require('axios')
 
 module.exports = {
 	name: 'channelinfo',
@@ -49,10 +48,8 @@ module.exports = {
 					.setFooter(`${client.config.name}`)
 
 				message.channel.send(ChannelInfo)
-
 			}
 			if (channel.type === 'category') {
-
 
 				const CategoryInfo = new Discord.MessageEmbed()
 
@@ -84,7 +81,6 @@ module.exports = {
 					.setColor(color)
 					.setTimestamp()
 					.setFooter(`${client.config.name}`)
-
 
 				message.channel.send(VoiceInfo)
 
