@@ -41,7 +41,7 @@ module.exports = {
                 },
                 {
                     value: "Modifier la description",
-                    description: "Permet de choisir la description de vôore embed",
+                    description: "Permet de choisir la description de votre embed",
                     emoji: "💬"
                 },
                 {
