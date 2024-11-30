@@ -27,8 +27,6 @@ module.exports = {
 						})
 					}, `Tous les salons fermés par ${message.author.tag}`);
 
-
-
 					message.channel.send(`${message.guild.channels.cache.size} salons fermés`);
 
 				}
