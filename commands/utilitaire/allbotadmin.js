@@ -1,7 +1,4 @@
 const Discord = require('discord.js')
-const {
-	MessageEmbed
-} = require('discord.js')
 const db = require('quick.db')
 const {
 	MessageActionRow,
@@ -10,15 +7,17 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
+const { MessageEmbed } = require('discord.js')
+
 function sleep(ms) {
 	return new Promise((resolve) => {
 		setTimeout(resolve, ms)
 	})
 }
+
 module.exports = {
 	name: 'allbotadmin',
 	aliases: [],
-
 	run: async (client, message, args, prefix, color) => {
 
 		let perm = ""
@@ -30,7 +29,6 @@ module.exports = {
 
 			var str_filtrer = message.guild.members.cache.filter(member => member.hasPermission("ADMINISTRATOR") && member.user.bot)
 			if (str_filtrer.size === 0 || undefined || false || null) return message.channel.send(new Discord.MessageEmbed().setColor(color).setFooter(`${client.config.name}`).setTitle("Aucun bot admins présents"))
-
 
 			let p0 = 0;
 			let p1 = 5;
@@ -48,7 +46,6 @@ module.exports = {
 				.setTimestamp()
 				.setColor(color)
 				.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
-
 
 			message.channel.send(embed).then(async tdata => {
 				if (str_filtrer.size > 5) {
@@ -85,9 +82,8 @@ module.exports = {
 								.setColor(color)
 								.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
 
-
 						})
-						// message.channel.send(embeds)
+
 					}, 60000 * 5)
 					client.on("clickButton", (button) => {
 						if (button.id === "allbotadm1") {
@@ -104,7 +100,6 @@ module.exports = {
 							if (p0 === undefined || p1 === undefined) {
 								return
 							}
-
 
 							embed.setDescription(str_filtrer
 									.map(r => r)
@@ -135,7 +130,6 @@ module.exports = {
 								return
 							}
 
-
 							embed.setDescription(str_filtrer
 									.map(r => r)
 									.filter(x => message.guild.members.cache.get(x.user.id))
@@ -147,13 +141,10 @@ module.exports = {
 								.setColor(color)
 								.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
 							tdata.edit(embed);
-
 						}
 					})
 				}
-
 			})
-
 		}
 	}
 }
