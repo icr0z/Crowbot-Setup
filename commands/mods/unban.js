@@ -26,7 +26,7 @@ module.exports = {
                 try {
                     message.guild.fetchBans().then(bans => {
                         if (bans.size == 0) {
-                            message.channel.send("Aucune personne n'est ban.")
+                            message.channel.send("Aucune personne n'est **ban**.")
                         } else {
                             bans.forEach(ban => {
                                 setInterval(() => {
@@ -70,7 +70,7 @@ module.exports = {
                 try {
                     await message.guild.fetchBan(args[0])
                 } catch (e) {
-                    message.channel.send(`<@${args[0]}> n'est pas ban`);
+                    message.channel.send(`<@${args[0]}> n'est pas **ban**`);
                     return;
                 }
 
