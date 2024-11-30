@@ -102,7 +102,7 @@ module.exports = {
                             if (logsmod) logsmod.send(new Discord.MessageEmbed()
                                 .setColor(color)
 				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setDescription(`${message.author} a **mute ${args[1]}** ${user} pour \`${reason}\``)
                                 .setFooter(`${client.config.name}`)
 				    			.setTimestamp() 
 
@@ -135,7 +135,7 @@ module.exports = {
                             if (logsmod) logsmod.send(new Discord.MessageEmbed()
                                 .setColor(color)
 				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setDescription(`${message.author} a **mute** ${user} pour \`${reason}\``)
                                 .setFooter(`${client.config.name}`)
 				    			.setTimestamp() 
 
@@ -150,7 +150,7 @@ module.exports = {
 
                                 .setColor(color)
 				    			.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-                                .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                                .setDescription(`${message.author} a **mute** ${user}`)
                                 .setFooter(`${client.config.name}`)
 				    			.setTimestamp() 
 
@@ -167,11 +167,12 @@ module.exports = {
                     if (logsmod) logsmod.send(new Discord.MessageEmbed()
                         .setColor(color)
 				    	.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-                        .setDescription(`${message.author} a **mute ${args[1]}** ${user}`)
+                        .setDescription(`${message.author} a **mute** ${user}`)
                         .setFooter(`${client.config.name}`)
 				    	.setTimestamp() 
                     )
                 }
+
             } else {}
 
         }
