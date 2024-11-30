@@ -18,58 +18,58 @@ module.exports = {
 				.setColor(color)
 				.setFooter(`${client.config.name}`)
 				.setTimestamp()
-				.addField("Compteur de membres", db.get(`member_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${msg.guild.id}`)}> (${db.get(`member_${msg.guild.id}`)})`)
-				.addField("Compteur de membres en ligne", db.get(`online_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${msg.guild.id}`)}> (${db.get(`online_${msg.guild.id}`)})`)
-				.addField("Compteur de membres en vocal", db.get(`vocal_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${msg.guild.id}`)}> (${db.get(`vocal_${msg.guild.id}`)})`)
-				.addField("Compteur de boost", db.get(`boost_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`boost_${msg.guild.id}`)}> (${db.get(`boost_${msg.guild.id}`)})`)
+				.addField("Compteur de Membres", db.get(`member_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${msg.guild.id}`)}> (${db.get(`member_${msg.guild.id}`)})`)
+				.addField("Compteur de membres En Ligne", db.get(`online_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${msg.guild.id}`)}> (${db.get(`online_${msg.guild.id}`)})`)
+				.addField("Compteur de membres En Vocal", db.get(`vocal_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${msg.guild.id}`)}> (${db.get(`vocal_${msg.guild.id}`)})`)
+				.addField("Compteur de Boost", db.get(`boost_${msg.guild.id}`) === null ? ":x:" : `<#${db.get(`boost_${msg.guild.id}`)}> (${db.get(`boost_${msg.guild.id}`)})`)
 
 
 
 			let menuoptions = [{
-					value: "Configuration automatique (création de tout les salons vocaux)",
-					description: "Permet de crée automatiquement tout les salons vocal",
+					value: "Configuration automatique (création de tous les salons vocaux)",
+					description: "Permet de créer automatiquement tous les salons vocaux",
 					emoji: "🔰"
 				},
 				{
-					value: "Modifier le compteur de membres",
-					description: "Permet de crée le compteur Membres",
+					value: "Modifier le compteur de Membres",
+					description: "Permet de créer le compteur de Membres",
 					emoji: "👤"
 				},
 				{
 					value: "Supprimer le compteur de membres",
-					description: "Permet de supprimer le compteur Membres",
+					description: "Permet de supprimer le compteur de Membres",
 					emoji: "👥"
 				},
 
 				{
-					value: "Modifier le compteur de membres en ligne",
-					description: "Permet de crée le compteur En Ligne",
+					value: "Modifier le compteur de membres En Ligne",
+					description: "Permet de créer le compteur de membres En Ligne",
 					emoji: "🌟"
 				},
 				{
-					value: "Supprimer le compteur de membres en ligne",
-					description: "Permet de supprimer le compteur En Ligne",
+					value: "Supprimer le compteur de membres En Ligne",
+					description: "Permet de supprimer le compteur de membres En Ligne",
 					emoji: "🪁"
 				},
 
 				{
-					value: "Modifier le compteur de membres en vocal",
-					description: "Permet de crée le compteur En Vocal",
+					value: "Modifier le compteur de membres En Vocal",
+					description: "Permet de créer le compteur de membres En Vocal",
 					emoji: "🎧"
 				},
 				{
-					value: "Supprimer le compteur de membres en vocal",
-					description: "Permet de supprimer le compteur En Vocal",
+					value: "Supprimer le compteur de membres En Vocal",
+					description: "Permet de supprimer le compteur de membres En Vocal",
 					emoji: "🔈"
 				},
 
 				{
-					value: "Modifier le compteur de boost",
-					description: "Permet de crée le compteur Boost",
+					value: "Modifier le compteur de Boost",
+					description: "Permet de créer le compteur Boost",
 					emoji: "💎"
 				},
 				{
-					value: "Supprimer le compteur de boost",
+					value: "Supprimer le compteur de Boost",
 					description: "Permet de supprimer le compteur Boost",
 					emoji: "🔮"
 				},
@@ -80,7 +80,7 @@ module.exports = {
 				.setID(message.id + 'MenuSelection')
 				.setMaxValues(1)
 				.setMinValues(1)
-				.setPlaceholder('Faix un choix');
+				.setPlaceholder('Fais un choix');
 			menuoptions.forEach(option => {
 				let row = new MessageMenuOption()
 					.setLabel(option.label ? option.label : option.value)
@@ -123,58 +123,58 @@ module.exports = {
 				.setColor(color)
 				.setFooter(`${client.config.name}`)
 				.setTimestamp()
-				.addField("Compteur de membres", db.get(`member_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${message.guild.id}`)}> (${db.get(`member_${message.guild.id}`)})`)
-				.addField("Compteur de membres en ligne", db.get(`online_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${message.guild.id}`)}> (${db.get(`online_${message.guild.id}`)})`)
-				.addField("Compteur de membres en vocal", db.get(`vocal_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${message.guild.id}`)}> (${db.get(`vocal_${message.guild.id}`)})`)
-				.addField("Compteur de boost", db.get(`boost_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`boost_${message.guild.id}`)}> (${db.get(`boost_${message.guild.id}`)})`)
+				.addField("Compteur de Membres", db.get(`member_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${message.guild.id}`)}> (${db.get(`member_${message.guild.id}`)})`)
+				.addField("Compteur de membres en Ligne", db.get(`online_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${message.guild.id}`)}> (${db.get(`online_${message.guild.id}`)})`)
+				.addField("Compteur de membres en Vocal", db.get(`vocal_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${message.guild.id}`)}> (${db.get(`vocal_${message.guild.id}`)})`)
+				.addField("Compteur de Boost", db.get(`boost_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`boost_${message.guild.id}`)}> (${db.get(`boost_${message.guild.id}`)})`)
 
 
 
 			let menuoptions = [{
 					value: "Configuration automatique",
-					description: "Permet de crée automatiquement tout les salons vocal",
+					description: "Permet de créer automatiquement tous les salons vocaux",
 					emoji: "🔰"
 				},
 				{
-					value: "Modifier le compteur de membres",
-					description: "Permet de crée le compteur Membres",
+					value: "Modifier le compteur de Membres",
+					description: "Permet de créer le compteur de Membres",
 					emoji: "👤"
 				},
 				{
-					value: "Supprimer le compteur de membres",
-					description: "Permet de supprimer le compteur Membres",
+					value: "Supprimer le compteur de Membres",
+					description: "Permet de supprimer le compteur de Membres",
 					emoji: "👥"
 				},
 
 				{
-					value: "Modifier le compteur de membres en ligne",
-					description: "Permet de crée le compteur En Ligne",
+					value: "Modifier le compteur de membres En ligne",
+					description: "Permet de créer le compteur de membres En Ligne",
 					emoji: "🌟"
 				},
 				{
-					value: "Supprimer le compteur de membres en ligne",
-					description: "Permet de supprimer le compteur En Ligne",
+					value: "Supprimer le compteur de membres En ligne",
+					description: "Permet de supprimer le compteur de membres En Ligne",
 					emoji: "🪁"
 				},
 
 				{
-					value: "Modifier le compteur de membres en vocal",
-					description: "Permet de crée le compteur En Vocal",
+					value: "Modifier le compteur de membres En Vocal",
+					description: "Permet de créer le compteur de membres En Vocal",
 					emoji: "🎧"
 				},
 				{
-					value: "Supprimer le compteur de membres en vocal",
-					description: "Permet de supprimer le compteur En Vocal",
+					value: "Supprimer le compteur de membres En Vocal",
+					description: "Permet de supprimer le compteur de membres En Vocal",
 					emoji: "🔈"
 				},
 
 				{
-					value: "Modifier le compteur de boost",
-					description: "Permet de crée le compteur Boost",
+					value: "Modifier le compteur de Boost",
+					description: "Permet de créer le compteur Boost",
 					emoji: "💎"
 				},
 				{
-					value: "Supprimer le compteur de boost",
+					value: "Supprimer le compteur de Boost",
 					description: "Permet de supprimer le compteur Boost",
 					emoji: "🔮"
 				},
@@ -222,12 +222,11 @@ module.exports = {
 							.setColor(color)
 							.setFooter(`${client.config.name}`)
 							.setTimestamp()
-							.addField("Compteur de membres", db.get(`member_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${message.guild.id}`)}> (${db.get(`member_${message.guild.id}`)})`)
-							.addField("Compteur de membres en ligne", db.get(`online_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${message.guild.id}`)}> (${db.get(`online_${message.guild.id}`)})`)
-							.addField("Compteur de membres en vocal", db.get(`vocal_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${message.guild.id}`)}> (${db.get(`vocal_${message.guild.id}`)})`)
+							.addField("Compteur de Membres", db.get(`member_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`member_${message.guild.id}`)}> (${db.get(`member_${message.guild.id}`)})`)
+							.addField("Compteur de membres En Ligne", db.get(`online_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`online_${message.guild.id}`)}> (${db.get(`online_${message.guild.id}`)})`)
+							.addField("Compteur de membres En Vocal", db.get(`vocal_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`vocal_${message.guild.id}`)}> (${db.get(`vocal_${message.guild.id}`)})`)
 							.addField("Compteur de boost", db.get(`boost_${message.guild.id}`) === null ? ":x:" : `<#${db.get(`boost_${message.guild.id}`)}> (${db.get(`boost_${message.guild.id}`)})`)
 					})
-					// message.channel.send(embeds)
 				}, 60000 * 5)
 				client.on('clickMenu', async (menu) => {
 					if (message.author !== menu.clicker.user || menu.message.id !== m.id) return;
@@ -257,7 +256,7 @@ module.exports = {
 									}]
 								}).then(c => {
 									c.setPosition(0)
-									c.guild.channels.create(`💎・Membres: ${message.guild.memberCount}`, {
+									c.guild.channels.create(`👤・Membres: ${message.guild.memberCount}`, {
 										type: 'voice',
 										parent: c.id,
 										permissionOverwrites: [{
@@ -267,7 +266,7 @@ module.exports = {
 										}, ],
 									}).then(total => {
 										db.set(`member_${message.guild.id}`, total.id)
-										c.guild.channels.create(`🌟・En ligne: ${message.guild.members.cache.filter(m => m.user.presence.status !== 'offline').size}`, {
+										c.guild.channels.create(`🌟・En Ligne: ${message.guild.members.cache.filter(m => m.user.presence.status !== 'offline').size}`, {
 											type: 'voice',
 											parent: c.id,
 											permissionOverwrites: [{
@@ -278,7 +277,7 @@ module.exports = {
 										}).then(online => {
 											db.set(`online_${message.guild.id}`, online.id)
 
-											c.guild.channels.create(`🎧・En vocal: ${message.guild.members.cache.filter(m => m.voice.channel).size}`, {
+											c.guild.channels.create(`🎧・En Vocal: ${message.guild.members.cache.filter(m => m.voice.channel).size}`, {
 												type: 'voice',
 												parent: c.id,
 												permissionOverwrites: [{
@@ -300,7 +299,7 @@ module.exports = {
 												}).then(boost => {
 													db.set(`boost_${message.guild.id}`, boost.id)
 
-													msge.edit(`Création de la **catégorie** des Compteurs effectué avec succès.`)
+													msge.edit(`Création de la **catégorie** des Compteurs effectuée avec succès.`)
 													updateembed(m)
 
 												})
@@ -310,8 +309,8 @@ module.exports = {
 								})
 							})
 							break
-						case "Modifier le compteur de membres":
-							message.channel.send(`Quel est **le nouveau compteur de membres ?**`).then(mp => {
+						case "Modifier le compteur de Membres":
+							message.channel.send(`Quel est **le nouveau compteur de Membres ?**`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -323,7 +322,7 @@ module.exports = {
 										var msg = cld.first();
 										var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
 										if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
-										message.channel.send(`Quel est **le format du Compteur de membres ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de membres)`).then(mpe => {
+										message.channel.send(`Quel est **le format du Compteur de membres ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de Membres)`).then(mpe => {
 											mpe.channel.awaitMessages(response => {
 													return response.author.id === message.author.id
 												}, {
@@ -339,7 +338,7 @@ module.exports = {
 														cld2.first().delete()
 														mp.delete()
 														cld.first().delete()
-														role.setName(`💎・Membres: ${message.guild.memberCount}`)
+														role.setName(`👤・Membres: ${message.guild.memberCount}`)
 														updateembed(m)
 													} else {
 														db.set(`memberformat_${message.guild.id}`, cld2.first().content)
@@ -356,12 +355,12 @@ module.exports = {
 									})
 							})
 							break
-						case "Supprimer le compteur de membres":
+						case "Supprimer le compteur de Membres":
 							db.delete(`member_${message.guild.id}`)
 							updateembed(m)
 							break
-						case "Modifier le compteur de membres en ligne":
-							message.channel.send(`Quel est **le nouveau compteur de membres en ligne ?**`).then(mp => {
+						case "Modifier le compteur de membres En Ligne":
+							message.channel.send(`Quel est **le nouveau compteur de membres En Ligne ?**`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -373,7 +372,7 @@ module.exports = {
 										var msg = cld.first();
 										var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
 										if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
-										message.channel.send(`Quel est **le format du Compteur de membres en ligne  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de membres)`).then(mpe => {
+										message.channel.send(`Quel est **le format du Compteur de membres En Ligne  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de membres)`).then(mpe => {
 											mpe.channel.awaitMessages(response => {
 													return response.author.id === message.author.id
 												}, {
@@ -406,12 +405,12 @@ module.exports = {
 									})
 							})
 							break
-						case "Supprimer le compteur de membres en ligne":
+						case "Supprimer le compteur de membres En Ligne":
 							db.delete(`online_${message.guild.id}`)
 							updateembed(m)
 							break
-						case "Modifier le compteur de membres en vocal":
-							message.channel.send(`Quel est **le nouveau compteur de membres en vocal ?**`).then(mp => {
+						case "Modifier le compteur de membres En Vocal":
+							message.channel.send(`Quel est **le nouveau compteur de membres En Vocal ?**`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -423,7 +422,7 @@ module.exports = {
 										var msg = cld.first();
 										var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
 										if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
-										message.channel.send(`Quel est **le format du Compteur de membres en vocal  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de membres)`).then(mpe => {
+										message.channel.send(`Quel est **le format du Compteur de membres En Vocal  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de membres)`).then(mpe => {
 											mpe.channel.awaitMessages(response => {
 													return response.author.id === message.author.id
 												}, {
@@ -456,12 +455,12 @@ module.exports = {
 									})
 							})
 							break
-						case "Supprimer le compteur de membres en vocal":
+						case "Supprimer le compteur de membres En Vocal":
 							db.delete(`vocal_${message.guild.id}`)
 							updateembed(m)
 							break
 						case "Modifier le compteur de boost":
-							message.channel.send(`Quel est **le nouveau compteur de boost ?**`).then(mp => {
+							message.channel.send(`Quel est **le nouveau compteur de Boost ?**`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -473,7 +472,7 @@ module.exports = {
 										var msg = cld.first();
 										var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
 										if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
-										message.channel.send(`Quel est **le format du Compteur de boost  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de boost)`).then(mpe => {
+										message.channel.send(`Quel est **le format du Compteur de Boost  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de boost)`).then(mpe => {
 											mpe.channel.awaitMessages(response => {
 													return response.author.id === message.author.id
 												}, {
@@ -506,7 +505,7 @@ module.exports = {
 									})
 							})
 							break
-						case "Supprimer le compteur de boost":
+						case "Supprimer le compteur de Boost":
 							db.delete(`boost_${message.guild.id}`)
 							updateembed(m)
 							break
