@@ -12,7 +12,7 @@ const { MessageEmbed } = require("discord.js")
 module.exports = {
 	name: 'muterole',
 	aliases: [],
-	run: async ( client, message, args, prefix, color ) => {
+	run: async (client, message, args, prefix, color) => {
 
 		let perm = ""
 		message.member.roles.cache.forEach(role => {
