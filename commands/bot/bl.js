@@ -39,7 +39,7 @@ module.exports = {
                 });
                 db.set(`blmd_${client.user.id}_${member.id}`, true)
 
-                message.channel.send(`**${member.username}** à été ajouté à la blacklist.\nIl a été **ban** de **${client.guilds.cache.size}** serveur(s)\nJe n'ai pas pu le **ban** de 0 serveur
+                message.channel.send(`**${member.username}** a été ajouté à la blacklist.\nIl a été **ban** de **${client.guilds.cache.size}** serveur(s)\nJe n'ai pas pu le **ban** de 0 serveur
                 `)
             } else if (args[0] === "clear") {
                 let tt = await db.all().filter(data => data.ID.startsWith(`blmd_${client.user.id}`));
