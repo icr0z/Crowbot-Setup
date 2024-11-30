@@ -1,17 +1,14 @@
-const Discord = require("discord.js"),
-	{
-		MessageEmbed
-	} = require("discord.js"),
-
-	ms = require("ms"),
-	cooldown = {}
-const db = require("quick.db")
-
-
-
+const Discord = require('discord.js')
+const db = require('quick.db')
+const {
+	MessageActionRow,
+	MessageButton,
+	MessageMenuOption,
+	MessageMenu
+} = require('discord-buttons');
 
 function kick(message, user, authorcooldown) {
-	message.guild.members.cache.get(user.id).kick(`Expulser par ${message.author.tag} pour: Sans raison`).then(r => {
+	message.guild.members.cache.get(user.id).kick(`Expulser par ${message.author.tag} pour: sans raison`).then(r => {
 		authorcooldown.limit++
 		setTimeout(() => {
 			authorcooldown.limit = authorcooldown.limit - 1
@@ -27,11 +24,11 @@ function kickreason(message, user, authorcooldown, reason) {
 		}, 120000);
 	})
 }
+
 module.exports = {
 	name: 'kick',
 	aliases: ["setkick", "k"],
 	run: async (client, message, args, prefix, color) => {
-
 
 		let perm = ""
 		message.member.roles.cache.forEach(role => {
@@ -47,7 +44,7 @@ module.exports = {
 					limit: 0
 				}
 				var authorcooldown = cooldown[message.author.id]
-				if (authorcooldown.limit > 2) return message.channel.send(`Vous avez atteint votre limite de **kick**, veuillez retenter plus tard!`);
+				if (authorcooldown.limit > 2) return message.channel.send(`Vous avez atteint votre limite de **kick**, veuillez réessayer plus tard !`);
 				var user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
 
 				if (!user) return message.channel.send(`Aucun membre trouvé pour \`${args[0] || "rien"}\``)
@@ -66,77 +63,62 @@ module.exports = {
 						kickreason(message, user, authorcooldown, reason)
 						user.send(`Vous avez été **kick** de **${message.guild.name}** pour \`${reason}\``)
 
-						if (logsmod) logsmod.send(
-							new Discord.MessageEmbed()
-							// .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+						if (logsmod) logsmod.send(new Discord.MessageEmbed()
 							.setColor(color)
-							//.setTitle(`<:protection:847072581382438953> Modération • Type: **\`kicknissement\`**`)
-							//      .setTimestamp() 
-							//     .setDescription(` **kicknissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Pour** \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
+							.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
 							.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
-
-
+							.setFooter(`${client.config.name}`)
+							.setTimestamp() 
 
 						)
+
 					} else {
+
 						message.channel.send(`${user} a été **kick**`);
 						kick(message, user, authorcooldown)
 						user.send(`Vous avez été **kick** de **${message.guild.name}**`)
 
-						if (logsmod) logsmod.send(
-							new Discord.MessageEmbed()
-							//       .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+						if (logsmod) logsmod.send(new Discord.MessageEmbed()
 							.setColor(color)
-							//   .setTitle(`<:protection:847072581382438953> Modération • Type: **\`kicknissement\`**`)
-							//     .setTimestamp() 
-							//    .setDescription(` **kicknissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-							.setDescription(`${message.author} a **kick** ${user}`)
-
-
+							.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+							.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+							.setFooter(`${client.config.name}`)
+							.setTimestamp() 
 
 						)
 					}
+
 				} else {
+
 					message.channel.send(`${user} a été **kick**`);
 					kick(message, user, authorcooldown)
 					user.send(`Vous avez été **kick** de **${message.guild.name}**`)
 
-					if (logsmod) logsmod.send(
-						new Discord.MessageEmbed()
-						//       .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+					if (logsmod) logsmod.send(new Discord.MessageEmbed()
 						.setColor(color)
-						//   .setTitle(`<:protection:847072581382438953> Modération • Type: **\`kicknissement\`**`)
-						//     .setTimestamp() 
-						//    .setDescription(` **kicknissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-						.setDescription(`${message.author} a **kick** ${user}`)
-
-
+						.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+						.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+						.setFooter(`${client.config.name}`)
+						.setTimestamp() 
 
 					)
-
 				}
+
 			} else {
+
 				message.channel.send(`${user} a été **kick**`);
 				kick(message, user, authorcooldown)
 				user.send(`Vous avez été **kick** de **${message.guild.name}**`)
 
-				if (logsmod) logsmod.send(
-					new Discord.MessageEmbed()
-					//        .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
+				if (logsmod) logsmod.send(new Discord.MessageEmbed()
 					.setColor(color)
-					//      .setTitle(`<:protection:847072581382438953> Modération • Type: **\`kicknissement\`**`)
-					//    .setTimestamp() 
-					//   .setDescription(` **kicknissement de**: ${user}\n**Auteur**: ${message.author} \n**Salon**: ${message.channel}\n**Temps de réponse**: ${client.ws.ping}ms`)
-					.setDescription(`${message.author} a **kick** ${user}`)
-
-
+					.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
+					.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+					.setFooter(`${client.config.name}`)
+					.setTimestamp() 
 
 				)
 			}
-
-
-
-
 		}
 	}
 }
