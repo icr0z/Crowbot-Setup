@@ -27,7 +27,7 @@ module.exports = {
 				message.guild.members.cache.forEach(member => setInterval(() => {
 					count++
 					if (member) member.roles.add(role, `Massiverole par ${message.author.tag}`).catch()
-					if (count === message.guild.memberCount) return message.channel.send(`J'effectue la tâche, merci de patienter ${message.guild.memberCount > 1 ? `j'ajoute le rôle à ${message.guild.memberCount} membres` : `j'ajoute le rôle à ${message.guild.memberCount} membres`}`);
+					if (count === message.guild.memberCount) return message.channel.send(`J'effectue la tâche, merci de patienter ${message.guild.memberCount > 1 ? `j'ajoute le rôle à **${message.guild.memberCount}** membres` : `j'ajoute le rôle à **${message.guild.memberCount}** membre`}`);
 				}), 250)
 
 
@@ -39,7 +39,7 @@ module.exports = {
 				message.guild.members.cache.forEach(member => setInterval(() => {
 					count++
 					if (member) member.roles.remove(role, `Massiverole par ${message.author.tag}`).catch()
-					if (count === message.guild.memberCount) return message.channel.send(`J'effectue la tâche, merci de patienter ${message.guild.memberCount > 1 ? `j'enlève le rôle à ${message.guild.memberCount} membres` : `j'enlève le rôle à ${message.guild.memberCount} membres`}`);
+					if (count === message.guild.memberCount) return message.channel.send(`J'effectue la tâche, merci de patienter ${message.guild.memberCount > 1 ? `j'enlève le rôle à **${message.guild.memberCount}** membres` : `j'enlève le rôle à **${message.guild.memberCount}** membre`}`);
 				}), 250);
 
 			}
