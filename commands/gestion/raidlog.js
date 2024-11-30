@@ -1,7 +1,11 @@
-const {
-	MessageEmbed
-} = require('discord.js')
+const Discord = require('discord.js')
 const db = require('quick.db')
+const {
+	MessageActionRow,
+	MessageButton,
+	MessageMenuOption,
+	MessageMenu
+} = require('discord-buttons')
 
 module.exports = {
 	name: 'raidlog',
@@ -15,7 +19,7 @@ module.exports = {
 				const channel = message.channel
 
 				db.set(`${message.guild.id}.raidlog`, channel.id)
-				message.channel.send(`Le salon ${channel} sera maintenant utilisé pour envoyer les logs de raid`)
+				message.channel.send(`Le salon ${channel} sera maintenant utilisé pour envoyer les Logs de Raid`)
 			} else if (args[0] === "off") {
 				db.set(`${message.guild.id}.raidlog`, null)
 				message.channel.send(`Logs de raid désactivés`)
@@ -23,7 +27,7 @@ module.exports = {
 			} else
 			if (ss) {
 				db.set(`${message.guild.id}.raidlog`, ss.id)
-				message.channel.send(`Le salon ${ss} sera maintenant utilisé pour envoyer les logs de raid`)
+				message.channel.send(`Le salon ${ss} sera maintenant utilisé pour envoyer les Logs de Raid`)
 			}
 
 		} else {
