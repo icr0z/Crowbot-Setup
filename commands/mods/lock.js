@@ -51,11 +51,9 @@ module.exports = {
 						;
 					}
 					message.channel.send(`Les membres ne peuvent plus parler dans <#${channel.id}>`);
-
 				}
-
 			}
-
+			
 		} catch (error) {
 			return;
 		}
