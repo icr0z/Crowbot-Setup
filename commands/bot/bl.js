@@ -27,7 +27,7 @@ module.exports = {
                 }
                 if (!member) return message.channel.send(`Aucun membre trouvé pour \`${args[1]|| " "}\``)
                 if (db.get(`blmd_${client.user.id}_${member.id}`) === true) {
-                    return message.channel.send(`<@${member.id}> est déjà dans la blacklist`)
+                    return message.channel.send(`<@${member.id}> est déjà dans la Blacklist`)
                 }
                 let nmb = 0
                 let nmbe = 0
@@ -39,11 +39,11 @@ module.exports = {
                 });
                 db.set(`blmd_${client.user.id}_${member.id}`, true)
 
-                message.channel.send(`**${member.username}** a été ajouté à la blacklist.\nIl a été **ban** de **${client.guilds.cache.size}** serveur(s)\nJe n'ai pas pu le **ban** de 0 serveur
+                message.channel.send(`**${member.username}** a été ajouté à la Blacklist.\nIl a été **ban** de **${client.guilds.cache.size}** serveur(s)\nJe n'ai pas pu le **ban** de 0 serveur
                 `)
             } else if (args[0] === "clear") {
                 let tt = await db.all().filter(data => data.ID.startsWith(`blmd_${client.user.id}`));
-                message.channel.send(`${tt.length === undefined||null ? 0:tt.length} ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la blacklist`)
+                message.channel.send(`${tt.length === undefined||null ? 0:tt.length} ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la Blacklist`)
 
 
                 let ttt = 0;
@@ -66,10 +66,10 @@ module.exports = {
                     }
                     if (!member) return message.channel.send(`Aucun membre trouvé pour \`${args[1]|| " "}\``)
                     if (db.get(`blmd_${client.user.id}_${member.id}`) === null) {
-                        return message.channel.send(`<@${member.id}> n'est pas dans la blacklist`)
+                        return message.channel.send(`<@${member.id}> n'est pas dans la Blacklist`)
                     }
                     db.delete(`blmd_${client.user.id}_${member.id}`)
-                    message.channel.send(`<@${member.id}> n'est plus dans la blacklist`)
+                    message.channel.send(`<@${member.id}> n'est plus dans la Blacklist`)
                 }
             } else if (args[0] === "list") {
 
