@@ -26,7 +26,7 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Configuration automatique (création de tous les salons vocaux)",
+					value: "Configuration Automatique (création de tous les salons vocaux)",
 					description: "Permet de créer automatiquement tous les salons vocaux",
 					emoji: "🔰"
 				},
@@ -131,7 +131,7 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Configuration automatique",
+					value: "Configuration Automatique",
 					description: "Permet de créer automatiquement tous les salons vocaux",
 					emoji: "🔰"
 				},
@@ -459,62 +459,62 @@ module.exports = {
 							db.delete(`vocal_${message.guild.id}`)
 							updateembed(m)
 							break
-						case "Modifier le compteur de boost":
-							message.channel.send(`Quel est **le nouveau compteur de Boost ?**`).then(mp => {
-								mp.channel.awaitMessages(response => {
-										return response.author.id === message.author.id
-									}, {
-										max: 1,
-										time: 60000,
-										errors: ['time']
-									})
-									.then(cld => {
-										var msg = cld.first();
-										var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
-										if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
-										message.channel.send(`Quel est **le format du Compteur de Boost  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de boost)`).then(mpe => {
-											mpe.channel.awaitMessages(response => {
-													return response.author.id === message.author.id
-												}, {
-													max: 1,
-													time: 60000,
-													errors: ['time']
-												})
-												.then(cld2 => {
-													if (cld2.first().content === "default") {
-														db.set(`boostformat_${message.guild.id}`, null)
-														db.set(`boost_${message.guild.id}`, role.id)
-														mpe.delete()
-														cld2.first().delete()
-														mp.delete()
-														cld.first().delete()
-														role.setName(`🔮・Boost: ${message.guild.premiumSubscriptionCount}`)
-														updateembed(m)
-													} else {
-														db.set(`boostformat_${message.guild.id}`, cld2.first().content)
-														db.set(`boost_${message.guild.id}`, role.id)
-														role.setName(cld2.first().content.replace("<count>", message.guild.premiumSubscriptionCount))
-														mpe.delete()
-														cld2.first().delete()
-														mp.delete()
-														cld.first().delete()
-														updateembed(m)
-													}
-												})
+						case "Modifier le compteur de Boost":
+								message.channel.send(`Quel est **le nouveau compteur de Boost ?**`).then(mp => {
+									mp.channel.awaitMessages(response => {
+											return response.author.id === message.author.id
+										}, {
+											max: 1,
+											time: 60000,
+											errors: ['time']
 										})
-									})
-							})
-							break
-						case "Supprimer le compteur de Boost":
-							db.delete(`boost_${message.guild.id}`)
-							updateembed(m)
-							break
-
+										.then(cld => {
+											var msg = cld.first();
+											var role = message.guild.channels.cache.get(msg.content) || msg.mentions.channels.first()
+											if (!role) return message.channel.send(`Aucun salon trouvé pour \`${msg.content}\`.`);
+											message.channel.send(`Quel est **le format du Compteur de Boost  ?** (Mettez \`default\` pour le mettre par default, Mettez \`<count>\` pour le nombre de boost)`).then(mpe => {
+												mpe.channel.awaitMessages(response => {
+														return response.author.id === message.author.id
+													}, {
+														max: 1,
+														time: 60000,
+														errors: ['time']
+													})
+													.then(cld2 => {
+														if (cld2.first().content === "default") {
+															db.set(`boostformat_${message.guild.id}`, null)
+															db.set(`boost_${message.guild.id}`, role.id)
+															mpe.delete()
+															cld2.first().delete()
+															mp.delete()
+															cld.first().delete()
+															role.setName(`🔮・Boost: ${message.guild.premiumSubscriptionCount}`)
+															updateembed(m)
+														} else {
+															db.set(`boostformat_${message.guild.id}`, cld2.first().content)
+															db.set(`boost_${message.guild.id}`, role.id)
+															role.setName(cld2.first().content.replace("<count>", message.guild.premiumSubscriptionCount))
+															mpe.delete()
+															cld2.first().delete()
+															mp.delete()
+															cld.first().delete()
+															updateembed(m)
+														}
+													})
+											})
+										})
+								})
+								break
+							case "Supprimer le compteur de Boost":
+								db.delete(`boost_${message.guild.id}`)
+								updateembed(m)
+								break
+	
+						}
 					}
-				}
-			})
-
+				})
+	
+			}
+	
 		}
-
 	}
-}
