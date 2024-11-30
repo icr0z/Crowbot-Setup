@@ -1,6 +1,15 @@
+const Discord = require('discord.js')
+const db = require('quick.db')
+const {
+    MessageActionRow,
+    MessageButton,
+    MessageMenuOption,
+    MessageMenu
+} = require('discord-buttons');
+
 const { MessageEmbed } = require("discord.js")
-const db = require("quick.db")
 let random_string = require("randomstring");
+
 function sleep(ms) {
     return new Promise((resolve) => {
         setTimeout(resolve, ms)
@@ -11,8 +20,10 @@ module.exports = {
     name: 'warn',
     aliases: ["sanctions"],
     run: async (client, message, args, prefix, color) => {
+
         let chx = db.get(`logmod_${message.guild.id}`);
         const logschannel = message.guild.channels.cache.get(chx)
+
         let perm = ""
         message.member.roles.cache.forEach(role => {
             if (db.get(`modsp_${message.guild.id}_${role.id}`)) perm = true
@@ -20,30 +31,23 @@ module.exports = {
             if (db.get(`admin_${message.guild.id}_${role.id}`)) perm = true
         })
         if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
-            let wass = db.get(`logmod_${message.guild.id}`);
 
-            const logschannel = message.guild.channels.cache.get(wass)
             if (args[0] === "add") {
                 const use = message.mentions.users.first() || client.users.cache.get(args[1]) 
-               let user = client.users.cache.get(use.id)
-
+                let user = client.users.cache.get(use.id)
 
                 if (!user) return message.channel.send(`Aucun membre trouvé pour \`${args[1] || "rien"}\``)
                 if (user.bot) return message.channel.send(`Vous pouvez pas sanctionnez un bot !`)
                 if (user.id == message.author.id) return message.channel.send(`Vous pouvez pas vous sanctionnez vous même !`)
 
-
                 if (message.guild.members.cache.get(user.id).roles.highest.position >= message.member.roles.highest.position || user.id === message.guild.owner.id) return message.channel.send(`Cette personnes est plus haute que vous sur le serveur, vous ne pouvez pas la sanctionnez !`)
 
                 let res = args.slice(2).join(" ")
-
                 let warnID = await
                     random_string.generate({
                         charset: 'numeric',
                         length: 8
                     });
-
-
 
                 db.push(`info.${message.guild.id}.${user.id}`, { moderator: message.author.tag, reason: res ? res : "Aucune raison", date: Date.parse(new Date) / 1000, id: warnID })
                 db.add(`number.${message.guild.id}.${user.id}`, 1)
@@ -52,28 +56,26 @@ module.exports = {
                     user.send(`Vous avez été **warn** sur ${message.guild.name}`)
 
                     logschannel.send(new MessageEmbed()
-                        //.setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
                         .setColor(color)
-                        // .setTitle(`<:protection:847072581382438953> Modération • Type: **\`expulsion\`**`)
-                        //  .setTimestamp() 
-                        //.setDescription(`**Expulsion de**: ${user}\n**Auteur**: ${message.author}\n**Pour**: \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
+                        .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
                         .setDescription(`${message.author} a **warn** ${user}`)
+                        .setFooter(`${client.config.name}`)
+                        .setTimestamp() 
                     )
+
                 } else {
+
                     message.channel.send(`${user} a été **warn** pour \`${res}\``);
                     user.send(`Vous avez été **warn** sur ${message.guild.name} pour \`${res}\``)
 
                     logschannel.send(new MessageEmbed()
-                        //.setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
                         .setColor(color)
-                        // .setTitle(`<:protection:847072581382438953> Modération • Type: **\`expulsion\`**`)
-                        //  .setTimestamp() 
-                        //.setDescription(`**Expulsion de**: ${user}\n**Auteur**: ${message.author}\n**Pour**: \`${reason}\`\n**Temps de réponse**: ${client.ws.ping}ms`)
+                        .setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
                         .setDescription(`${message.author} a **warn** ${user} pour \`${res}\``)
+                        .setFooter(`${client.config.name}`)
+                        .setTimestamp() 
                     )
                 }
-
-
             }
             if (args[0] === "list") {
                 const use = message.mentions.users.first() || client.users.cache.get(args[1]) || message.author
@@ -87,8 +89,6 @@ module.exports = {
                 let p0 = 0;
                 let p1 = 5;
                 let page = 1;
-
-
 
                 const embed = new MessageEmbed()
                 embed.setTitle(`Liste des sanctions de ${user.tag} (**${number}**)`)
@@ -128,10 +128,7 @@ module.exports = {
                                     )
                                     .setFooter(`1/${Math.ceil(number === 0?1:number / 15)} • ${client.config.name}`)
                                     .setColor(color)
-        
-        
                             })
-                            // message.channel.send(embeds)
                         }, 60000 * 5)
                         client.on("clickButton", (button) => {
                             if (button.clicker.user.id !== message.author.id) return ;
@@ -188,8 +185,6 @@ module.exports = {
                             }
                         })
                     }})
-
-               
             }
             if (args[0] === "remove") {
                 let id = args[2]
@@ -200,12 +195,9 @@ module.exports = {
                 if (user.bot) return message.channel.send(`Aucun membre trouvé pour \`${args[1] || "rien"}\``)
                 if (user.id == message.author.id) return message.react("❌")
 
-
                 if (!database || database == []) return message.channel.send(`Aucun membre trouvé avec des sanctions pour \`${args[1] || "rien"}\``)
 
                 if (!database.find(data => data.id === id)) return message.channel.send(`Aucune sanctions trouvé pour \`${args[2] || "rien"}\``)
-
-
 
 
                 database.splice(database.findIndex(data => data.id == id), 1)
@@ -224,11 +216,9 @@ module.exports = {
                 const use = message.mentions.users.first() || client.users.cache.get(args[1]) 
                 let user = client.users.cache.get(use.id)
 
-
                 if (!user) return message.channel.send(`Aucun membre trouvé pour \`${args[1] || "rien"}\``)
                 if (user.bot) return message.channel.send(`Aucun membre trouvé pour \`${args[1] || "rien"}\``)
                 if (user.id == message.author.id) return message.react("❌")
-
 
                 if (message.guild.members.cache.get(user.id).roles.highest.position >= message.member.roles.highest.position) return
                 const number = db.fetch(`number.${message.guild.id}.${user.id}`)
@@ -239,7 +229,6 @@ module.exports = {
                 db.delete(`number.${message.guild.id}.${user.id}`)
 
                 db.delete(`info.${message.guild.id}.${user.id}`)
-
 
             }
         }
