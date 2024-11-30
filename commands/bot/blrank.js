@@ -45,7 +45,7 @@ module.exports = {
 				message.channel.send(`${member.username} est maintenant dans la Blacklist Rank`)
 			} else if (args[0] === "clear") {
 				let tt = await db.all().filter(data => data.ID.startsWith(`blrankmd_${client.user.id}`));
-				message.channel.send(`${tt.length === undefined||null ? 0:tt.length} ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la blacklist Rank`)
+				message.channel.send(`${tt.length === undefined||null ? 0:tt.length} ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la Blacklist Rank`)
 
 
 				let ttt = 0;
@@ -68,10 +68,10 @@ module.exports = {
 					}
 					if (!member) return message.channel.send(`Aucun membre trouvé pour \`${args[1]|| " "}\``)
 					if (db.get(`blrankmd_${client.user.id}_${member.id}`) === null) {
-						return message.channel.send(`${member.username} n'est pas dans la blacklist Rank`)
+						return message.channel.send(`${member.username} n'est pas dans la Blacklist Rank`)
 					}
 					db.delete(`blrankmd_${client.user.id}_${member.id}`)
-					message.channel.send(`${member.username} n'est plus dans la blacklist Rank`)
+					message.channel.send(`${member.username} n'est plus dans la Blacklist Rank`)
 				}
 			} else if (args[0] === "list") {
 
