@@ -6,6 +6,7 @@ const {
 	MessageMenuOption,
 	MessageMenu
 } = require('discord-buttons');
+
 module.exports = {
 	name: 'logs',
 	aliases: [],
@@ -24,33 +25,33 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Modifier le salon de logs mods",
-					description: "Permet de choisir le salon des logs mods",
+					value: "Modifier le salon de Logs Mods",
+					description: "Permet de choisir le salon des Logs Mods",
 					emoji: "🏷️"
 				},
 				{
-					value: "Supprimer le salon de logs mods",
-					description: "Permet de supprimer le salon des logs mods",
+					value: "Supprimer le salon de Logs Mods",
+					description: "Permet de supprimer le salon des Logs Mods",
 					emoji: "🛎️"
 				},
 				{
-					value: "Modifier le salon de logs message",
-					description: "Permet de choisir le salon des logs message",
+					value: "Modifier le salon de Logs Message",
+					description: "Permet de choisir le salon des Logs message",
 					emoji: "📩"
 				},
 				{
-					value: "Supprimer le salon de logs message",
-					description: "Permet de supprimer le salon des logs message",
+					value: "Supprimer le salon de Logs Message",
+					description: "Permet de supprimer le salon des Logs Message",
 					emoji: "✉️"
 				},
 				{
-					value: "Modifier le salon de logs vocal",
-					description: "Permet de choisir le salon des logs vocal",
+					value: "Modifier le salon de Logs Vocal",
+					description: "Permet de choisir le salon des Logs Vocal",
 					emoji: "🎧"
 				},
 				{
-					value: "Supprimer le salon de logs vocal",
-					description: "Permet de supprimer le salon des logs vocal",
+					value: "Supprimer le salon de Logs Vocal",
+					description: "Permet de supprimer le salon des Logs Vocal",
 					emoji: "🔊"
 				},
 
@@ -64,7 +65,7 @@ module.exports = {
 				.setID(message.id + 'MenuSelection')
 				.setMaxValues(1)
 				.setMinValues(1)
-				.setPlaceholder('Faix un choix');
+				.setPlaceholder('Fais un choix');
 			menuoptions.forEach(option => {
 				let row = new MessageMenuOption()
 					.setLabel(option.label ? option.label : option.value)
@@ -78,7 +79,7 @@ module.exports = {
 				.setStyle("gray")
 				.setID("logs" + message.id)
 				.setEmoji("❌")
-				.setLabel("Re formuler votre choix")
+				.setLabel("Reformuler votre choix")
 			msg.edit({
 				embed: embed,
 				components: [
@@ -112,33 +113,33 @@ module.exports = {
 
 
 			let menuoptions = [{
-					value: "Modifier le salon de logs mods",
-					description: "Permet de choisir le salon des logs mods",
+					value: "Modifier le salon de Logs Mods",
+					description: "Permet de choisir le salon des Logs Mods",
 					emoji: "🏷️"
 				},
 				{
-					value: "Supprimer le salon de logs mods",
-					description: "Permet de supprimer le salon des logs mods",
+					value: "Supprimer le salon de Logs Mods",
+					description: "Permet de supprimer le salon des Logs Mods",
 					emoji: "🛎️"
 				},
 				{
-					value: "Modifier le salon de logs message",
-					description: "Permet de choisir le salon des logs message",
+					value: "Modifier le salon de Logs Message",
+					description: "Permet de choisir le salon des Logs Message",
 					emoji: "📩"
 				},
 				{
-					value: "Supprimer le salon de logs message",
-					description: "Permet de supprimer le salon des logs message",
+					value: "Supprimer le salon de Logs Message",
+					description: "Permet de supprimer le salon des Logs Message",
 					emoji: "✉️"
 				},
 				{
-					value: "Modifier le salon de logs vocal",
-					description: "Permet de choisir le salon des logs vocal",
+					value: "Modifier le salon de Logs Vocal",
+					description: "Permet de choisir le salon des Logs Vocal",
 					emoji: "🎧"
 				},
 				{
-					value: "Supprimer le salon de logs vocal",
-					description: "Permet de supprimer le salon des logs vocal",
+					value: "Supprimer le salon de Logs Vocal",
+					description: "Permet de supprimer le salon des Logs Vocal",
 					emoji: "🔊"
 				},
 
@@ -149,7 +150,7 @@ module.exports = {
 				.setID(message.id + 'MenuSelection')
 				.setMaxValues(1)
 				.setMinValues(1)
-				.setPlaceholder('Faix un choix');
+				.setPlaceholder('Fais un choix');
 			menuoptions.forEach(option => {
 				let row = new MessageMenuOption()
 					.setLabel(option.label ? option.label : option.value)
@@ -163,7 +164,7 @@ module.exports = {
 				.setStyle("gray")
 				.setID("logs" + message.id)
 				.setEmoji("❌")
-				.setLabel("Re formuler votre choix")
+				.setLabel("Reformuler votre choix")
 			message.channel.send({
 				embed: embed,
 				components: [
@@ -209,8 +210,8 @@ module.exports = {
 
 				function menuselection(menu) {
 					switch (menu.values[0]) {
-						case "Modifier le salon de logs mods":
-							message.channel.send(`Quel est **le nouveau salon de logs mods** ?`).then(mp => {
+						case "Modifier le salon de Logs Mods":
+							message.channel.send(`Quel est **le nouveau salon de Logs Mods** ?`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -232,13 +233,13 @@ module.exports = {
 									});
 							})
 							break
-						case "Supprimer le salon de logs mods":
+						case "Supprimer le salon de Logs Mods":
 							db.delete(`logmod_${message.guild.id}`)
 							updateembed(m)
 							break
 
-						case "Modifier le salon de logs message":
-							message.channel.send(`Quel est **le nouveau salon de logs message** ?`).then(mp => {
+						case "Modifier le salon de Logs Message":
+							message.channel.send(`Quel est **le nouveau salon de Logs Message** ?`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -260,13 +261,13 @@ module.exports = {
 									});
 							})
 							break
-						case "Supprimer le salon de logs message":
+						case "Supprimer le salon de Logs Message":
 							db.delete(`msglog_${message.guild.id}`)
 							updateembed(m)
 							break
 
-						case "Modifier le salon de logs vocal":
-							message.channel.send(`Quel est **le nouveau salon de logs vocal** ?`).then(mp => {
+						case "Modifier le salon de Logs Vocal":
+							message.channel.send(`Quel est **le nouveau salon de Logs Vocal** ?`).then(mp => {
 								mp.channel.awaitMessages(response => {
 										return response.author.id === message.author.id
 									}, {
@@ -288,7 +289,7 @@ module.exports = {
 									});
 							})
 							break
-						case "Supprimer le salon de logs vocal":
+						case "Supprimer le salon de Logs Vocal":
 							db.delete(`logvc_${message.guild.id}`)
 							updateembed(m)
 							break
