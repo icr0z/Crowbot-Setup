@@ -81,7 +81,7 @@ module.exports = {
 						if (logsmod) logsmod.send(new Discord.MessageEmbed()
 							.setColor(color)
 							.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-							.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+							.setDescription(`${message.author} a **kick** ${user}`)
 							.setFooter(`${client.config.name}`)
 							.setTimestamp() 
 
@@ -97,7 +97,7 @@ module.exports = {
 					if (logsmod) logsmod.send(new Discord.MessageEmbed()
 						.setColor(color)
 						.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-						.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+						.setDescription(`${message.author} a **kick** ${user}`)
 						.setFooter(`${client.config.name}`)
 						.setTimestamp() 
 
@@ -113,7 +113,7 @@ module.exports = {
 				if (logsmod) logsmod.send(new Discord.MessageEmbed()
 					.setColor(color)
 					.setAuthor(`${message.author.username}` , `${message.author.displayAvatarURL({dynamic : true })}`)
-					.setDescription(`${message.author} a **kick** ${user} pour \`${reason}\``)
+					.setDescription(`${message.author} a **kick** ${user}`)
 					.setFooter(`${client.config.name}`)
 					.setTimestamp() 
 
