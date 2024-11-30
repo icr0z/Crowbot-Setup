@@ -140,13 +140,10 @@ module.exports = {
 								.setColor(color)
 								.setFooter(`Total: ${muteRole.members.size} • ${client.config.name}`)
 							tdata.edit(embed);
-
 						}
 					})
 				}
-
 			})
-
 		}
 	}
 }
