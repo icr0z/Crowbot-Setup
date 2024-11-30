@@ -7,20 +7,9 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
-function unban(message, user, authorcooldown) {
-	message.guild.members.unban(user.id, {
-		reason: `Débannis par ${message.author.tag}`
-	}).then(r => {
-		authorcooldown.limit++
-		setTimeout(() => {
-			authorcooldown.limit = authorcooldown.limit - 1
-		}, 120000);
-	})
-};
 module.exports = {
 	name: 'clear',
 	aliases: [],
-
 	run: async (client, message, args, prefix, color) => {
 
 		let perm = ""
@@ -28,8 +17,8 @@ module.exports = {
 			if (db.get(`ownerp_${message.guild.id}_${role.id}`)) perm = true
 			if (db.get(`admin_${message.guild.id}_${role.id}`)) perm = null
 		})
-		if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 
+		if (client.config.owner.includes(message.author.id) || db.get(`ownermd_${client.user.id}_${message.author.id}`) === true || perm) {
 			if (message.mentions.members.first()) {
 
 				message.delete()
