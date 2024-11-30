@@ -28,14 +28,14 @@ module.exports = {
 				}
 				if (!member) return message.channel.send(`Aucun membre trouvé pour \`${args[1]|| " "}\``)
 				if (db.get(`wlmd_${message.guild.id}_${member.user.id}`) === true) {
-					return message.channel.send(`<@${member.id}> est déjà whitelist`)
+					return message.channel.send(`<@${member.id}> est déjà dans la whitelist`)
 				}
 				db.set(`wlmd_${message.guild.id}_${member.user.id}`, true)
 
 				message.channel.send(`<@${member.id}> est maintenant dans la whitelist`)
 			} else if (args[0] === "clear") {
 				let tt = await db.all().filter(data => data.ID.startsWith(`wlmd_${message.guild.id}`));
-				message.channel.send(`${tt.length === undefined||null ? 0:tt.length} ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la whitelist`)
+				message.channel.send(`**${tt.length === undefined||null ? 0:tt.length}** ${tt.length > 1 ? "personnes ont été supprimées ":"personne a été supprimée"} de la whitelist`)
 
 
 				let ttt = 0;
@@ -58,10 +58,10 @@ module.exports = {
 					}
 					if (!member) return message.channel.send(`Aucun membre trouvé pour \`${args[1]|| " "}\``)
 					if (db.get(`wlmd_${message.guild.id}_${member.user.id}`) === null) {
-						return message.channel.send(`<@${member.id}> n'est pas whitlist`)
+						return message.channel.send(`<@${member.id}> n'est pas dans la whitlist`)
 					}
 					db.delete(`wlmd_${message.guild.id}_${member.user.id}`)
-					message.channel.send(`<@${member.id}> n'est plus whitelist`)
+					message.channel.send(`<@${member.id}> n'est plus dans la whitelist`)
 				}
 			} else if (args[0] === "list") {
 
@@ -120,7 +120,6 @@ module.exports = {
 
 
 							})
-							// message.channel.send(embeds)
 						}, 60000 * 5)
 						client.on("clickButton", (button) => {
 							if (button.id === "wl1") {
