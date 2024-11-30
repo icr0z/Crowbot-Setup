@@ -1,7 +1,4 @@
 const Discord = require('discord.js')
-const {
-	MessageEmbed
-} = require('discord.js')
 const db = require('quick.db')
 const {
 	MessageActionRow,
@@ -10,15 +7,17 @@ const {
 	MessageMenu
 } = require('discord-buttons');
 
+const { MessageEmbed } = require('discord.js')
+
 function sleep(ms) {
 	return new Promise((resolve) => {
 		setTimeout(resolve, ms)
 	})
 }
+
 module.exports = {
 	name: 'alladmin',
 	aliases: [],
-
 	run: async (client, message, args, prefix, color) => {
 
 		let perm = ""
@@ -78,19 +77,14 @@ module.exports = {
 									.map((m, i) => `${i+1}) ${m.user} (${m.user.id})`)
 									.slice(p0, p1)
 								)
-
 								.setTimestamp()
 								.setColor(color)
 								.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
-
-
 						})
-						// message.channel.send(embeds)
 					}, 60000 * 5)
 					client.on("clickButton", (button) => {
 						if (button.id === "alladm1") {
 							if (button.clicker.user.id !== message.author.id) return;
-
 							button.reply.defer(true)
 
 							p0 = p0 - 5;
@@ -103,20 +97,16 @@ module.exports = {
 							if (p0 === undefined || p1 === undefined) {
 								return
 							}
-
-
 							embed.setDescription(str_filtrer
 									.map(r => r)
 									.filter(x => message.guild.members.cache.get(x.user.id))
 									.map((m, i) => `${i+1}) ${m.user} (${m.user.id})`)
 									.slice(p0, p1)
 								)
-
 								.setTimestamp()
 								.setColor(color)
 								.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
 							tdata.edit(embed);
-
 						}
 						if (button.id === "alladm2") {
 							if (button.clicker.user.id !== message.author.id) return;
@@ -134,8 +124,6 @@ module.exports = {
 							if (p0 === undefined || p1 === undefined) {
 								return
 							}
-
-
 							embed.setDescription(str_filtrer
 									.map(r => r)
 									.filter(x => message.guild.members.cache.get(x.user.id))
@@ -147,13 +135,10 @@ module.exports = {
 								.setColor(color)
 								.setFooter(`Total: ${str_filtrer.size} • ${client.config.name}`)
 							tdata.edit(embed);
-
 						}
 					})
 				}
-
 			})
-
 		}
 	}
 }
