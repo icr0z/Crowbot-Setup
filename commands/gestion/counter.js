@@ -518,5 +518,3 @@ module.exports = {
 	
 		}
 	}
-		}
-	}
