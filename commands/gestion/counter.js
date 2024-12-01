@@ -147,12 +147,12 @@ module.exports = {
 				},
 
 				{
-					value: "Modifier le compteur de membres En ligne",
+					value: "Modifier le compteur de membres En Ligne",
 					description: "Permet de créer le compteur de membres En Ligne",
 					emoji: "🌟"
 				},
 				{
-					value: "Supprimer le compteur de membres En ligne",
+					value: "Supprimer le compteur de membres En Ligne",
 					description: "Permet de supprimer le compteur de membres En Ligne",
 					emoji: "🪁"
 				},
@@ -245,7 +245,7 @@ module.exports = {
 
 				function menuselection(menu) {
 					switch (menu.values[0]) {
-						case "Configuration automatique":
+						case "Configuration Automatique":
 							message.channel.send(`Création de la **catégorie** des Compteurs en cours..`).then(msge => {
 								message.guild.channels.create('Statistique(s) Serveur', {
 									type: 'category',
@@ -515,6 +515,9 @@ module.exports = {
 				})
 	
 			}
+	
+		}
+	}
 	
 		}
 	}
