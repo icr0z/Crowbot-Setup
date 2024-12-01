@@ -256,7 +256,7 @@ module.exports = {
 									}]
 								}).then(c => {
 									c.setPosition(0)
-									c.guild.channels.create(`👤・Membres: ${message.guild.memberCount}`, {
+									c.guild.channels.create(`💎・Membres: ${message.guild.memberCount}`, {
 										type: 'voice',
 										parent: c.id,
 										permissionOverwrites: [{
@@ -338,7 +338,7 @@ module.exports = {
 														cld2.first().delete()
 														mp.delete()
 														cld.first().delete()
-														role.setName(`👤・Membres: ${message.guild.memberCount}`)
+														role.setName(`💎・Membres: ${message.guild.memberCount}`)
 														updateembed(m)
 													} else {
 														db.set(`memberformat_${message.guild.id}`, cld2.first().content)
