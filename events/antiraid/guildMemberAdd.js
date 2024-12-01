@@ -12,24 +12,21 @@ module.exports = async (client, member) => {
 	const color = db.get(`color_${guild.id}`) === null ? client.config.color : db.get(`color_${guild.id}`)
 
 	if (db.get(`antitoken_${member.guild.id}`) === true) {
-		// let maxMembers = db.get(`antitokenlimmit1_${member.guild.id}`) || 10 //Nombres de membres max
-		// let maxTime = ms(db.get(`antitokenlimmit2_${member.guild.id}`) || "10s"); //temps en millisecondes 1000ms = 1s
-		// let last10Members = guild.members.cache.filter(member => member.joinedAt <= (Date.now() - maxTime)) //Prendre les 10 derniers membres qui sont arrivés y'a 10 secondes
-		// if (last10Members.size > maxMembers) return;
-		// const a = []
-		// last10Members.forEach(user => {
-		//     user.ban({ reason: "Antimassjoin" }).then(() => {
-		//         a.push(user.id)
-		//     })
-		// })
-		// if(!a) return undefined
-		// const embed = new Discord.MessageEmbed()
-		//     .setColor(color)
-		//     .setDescription(`${a.map(u => `<@${u}>`).join(", ")} on été **ban** pour avoir \`rejoint le serveur en même temps\``)
-		// if (raidlog) raidlog.send(embed)
-
-
-
+		let maxMembers = db.get(`antitokenlimmit1_${member.guild.id}`) || 10 //Nombres de membres max
+		let maxTime = ms(db.get(`antitokenlimmit2_${member.guild.id}`) || "10s"); //temps en millisecondes 1000ms = 1s
+		let last10Members = guild.members.cache.filter(member => member.joinedAt <= (Date.now() - maxTime)) //Prendre les 10 derniers membres qui sont arrivés y'a 10 secondes
+		if (last10Members.size > maxMembers) return;
+		const a = []
+		last10Members.forEach(user => {
+		    user.ban({ reason: "Antimassjoin" }).then(() => {
+		         a.push(user.id)
+		     })
+		 })
+	     if(!a) return undefined
+		 const embed = new Discord.MessageEmbed()
+		     .setColor(color)
+		     .setDescription(`${a.map(u => `<@${u}>`).join(", ")} ont été **ban** pour avoir \`rejoint le serveur en même temps\``)
+		 if (raidlog) raidlog.send(embed)
 
 	}
 
@@ -45,16 +42,16 @@ module.exports = async (client, member) => {
 		}
 		const embed = new Discord.MessageEmbed()
 			.setColor(color)
-			.setDescription(`${member} à été **kick** parce que \`sont compte à été crée trop résamment\``)
+			.setDescription(`${member} à été **kick** parce que \`son compte à été crée trop récemment\``)
 		if (raidlog) raidlog.send(embed)
 	}
 
 	if (db.get(`blmd_${client.user.id}_${member.id}`) === true) {
 		member.ban().then(() => {
-			if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`${member} a rejoins alors qu'il êtait blacklist, il a été **ban**`))
+			if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`${member} a rejoint alors qu'il êtait blacklist, il a été **ban**`))
 
 		}).catch(() => {
-			if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`${member} a rejoins alors qu'il êtait blacklist, mais il n'a pas pu être **ban**`))
+			if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`${member} a rejoint alors qu'il êtait blacklist, mais il n'a pas pu être **ban**`))
 
 		})
 	}
@@ -82,37 +79,32 @@ module.exports = async (client, member) => {
 						}
 					}).then(() => {
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, il a été **ban** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, il a été **ban** !`))
 					}).catch(() => {
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, mais il n'a pas pu être **ban** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, mais il n'a pas pu être **ban** !`))
 
 					})
 				} else if (db.get(`botsanction_${guild.id}`) === "kick") {
 					guild.users.cache.get(action.executor.id).kick().then(() => {
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, il a été **kick** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, il a été **kick** !`))
 					}).catch(() => {
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, mais il n'a pas pu être **kick** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, mais il n'a pas pu être **kick** !`))
 					})
 				} else if (db.get(`botsanction_${guild.id}`) === "derank") {
 
 					guild.users.cache.get(action.executor.id).roles.set([]).then(() => {
 
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, il a été **derank** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, il a été **derank** !`))
 					}).catch(() => {
 
-						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a inviter le bot ${member}, mais il n'a pas pu être **derank** !`))
+						if (raidlog) return raidlog.send(new MessageEmbed().setColor(color).setDescription(`<@${action.executor.id}> a invité le bot ${member}, mais il n'a pas pu être **derank** !`))
 					})
 				}
-
 			}
 		}
-
 	}
-
-
-
 }
