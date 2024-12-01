@@ -63,6 +63,4 @@ module.exports = (client, message) => {
 	setTimeout(async () => {
 		client.cooldown.splice(index)
 	}, 1000)
-
-
 }
