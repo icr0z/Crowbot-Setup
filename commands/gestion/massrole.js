@@ -21,9 +21,9 @@ module.exports = {
 
 			if (args[0] === "add") {
 				const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
-				if (!role) return message.channel.send(`Aucun rôle trouver pour \`${args[1] || " "}\``)
+				if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[1] || " "}\``)
 				let count = 0
-				message.channel.send(`Je suis entrain d'ajouter le rôle \`${role}\` à ${message.guild.memberCount} utilisateur(s)...`)
+				message.channel.send(`Je suis entrain d'ajouter le rôle \`${role}\` à **${message.guild.memberCount}** utilisateur(s)...`)
 				message.guild.members.cache.forEach(member => setInterval(() => {
 					count++
 					if (member) member.roles.add(role, `Massiverole par ${message.author.tag}`).catch()
@@ -33,7 +33,7 @@ module.exports = {
 
 			} else if (args[0] === "remove") {
 				const role = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
-				if (!role) return message.channel.send(`Aucun rôle trouver pour \`${args[1] || " "}\``)
+				if (!role) return message.channel.send(`Aucun rôle trouvé pour \`${args[1] || " "}\``)
 				let count = 0
 				message.channel.send(`Je suis entrain d'enlever le rôle \`${role}\` à ${message.guild.memberCount} utilisateur(s)...`)
 				message.guild.members.cache.forEach(member => setInterval(() => {
