@@ -37,8 +37,8 @@ module.exports = {
                 let user = client.users.cache.get(use.id)
 
                 if (!user) return message.channel.send(`Aucun membre trouvé pour \`${args[1] || "rien"}\``)
-                if (user.bot) return message.channel.send(`Vous pouvez pas sanctionnez un bot !`)
-                if (user.id == message.author.id) return message.channel.send(`Vous pouvez pas vous sanctionnez vous même !`)
+                if (user.bot) return message.channel.send(`Vous ne pouvez pas sanctionner un bot !`)
+                if (user.id == message.author.id) return message.channel.send(`Vous ne pouvez pas vous sanctionner vous même !`)
 
                 if (message.guild.members.cache.get(user.id).roles.highest.position >= message.member.roles.highest.position || user.id === message.guild.owner.id) return message.channel.send(`Cette personnes est plus haute que vous sur le serveur, vous ne pouvez pas la sanctionnez !`)
 
