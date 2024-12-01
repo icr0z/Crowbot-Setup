@@ -11,25 +11,6 @@ module.exports = async (client, member) => {
 	const raidlog = guild.channels.cache.get(db.get(`${guild.id}.raidlog`))
 	const color = db.get(`color_${guild.id}`) === null ? client.config.color : db.get(`color_${guild.id}`)
 
-	if (db.get(`antitoken_${member.guild.id}`) === true) {
-		let maxMembers = db.get(`antitokenlimmit1_${member.guild.id}`) || 10 //Nombres de membres max
-		let maxTime = ms(db.get(`antitokenlimmit2_${member.guild.id}`) || "10s"); //temps en millisecondes 1000ms = 1s
-		let last10Members = guild.members.cache.filter(member => member.joinedAt <= (Date.now() - maxTime)) //Prendre les 10 derniers membres qui sont arrivés y'a 10 secondes
-		if (last10Members.size > maxMembers) return;
-		const a = []
-		last10Members.forEach(user => {
-		    user.ban({ reason: "Antimassjoin" }).then(() => {
-		         a.push(user.id)
-		     })
-		 })
-	     if(!a) return undefined
-		 const embed = new Discord.MessageEmbed()
-		     .setColor(color)
-		     .setDescription(`${a.map(u => `<@${u}>`).join(", ")} ont été **ban** pour avoir \`rejoint le serveur en même temps\``)
-		 if (raidlog) raidlog.send(embed)
-
-	}
-
 	if (db.get(`crealimit_${member.guild.id}`) === true) {
 		const duration = ms(db.get(`crealimittemps_${member.guild.id}`) || "0s");
 		let created = member.user.createdTimestamp;
